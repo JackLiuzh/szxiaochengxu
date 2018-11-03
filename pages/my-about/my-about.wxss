@@ -1,0 +1,34 @@
+/* pages/my-about/my-about.wxss */
+.con-box{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #fff;
+margin-top:1rpx;
+}
+.con-box .body{
+  margin-top:49rpx;
+}
+.con-box .body .body-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.con-box .body .body-top .biaoti{
+  color: #333;
+  font-size: 34rpx;
+  margin-top: 34rpx;
+}
+.con-box .body .body-top .banben{
+  margin-top: 20rpx;
+  color: #999;
+  font-size: 30rpx;
+}
+.con-box .body .body-bom{
+  padding: 54rpx 100rpx;
+  color: #999;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}

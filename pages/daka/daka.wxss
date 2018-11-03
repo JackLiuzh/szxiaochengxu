@@ -1,0 +1,48 @@
+/* pages/daka/daka.wxss */
+.box {
+  
+}
+.box .box-item{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   margin-top:20rpx;
+   height:160rpx;
+   background-color: #FFFFFF;
+   align-items: center;
+}
+.box .box-item .item-left{
+   display: flex;
+   flex-direction: row;
+
+}
+ .box .box-item .item-left .word-content{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   margin-left:20rpx;
+ }
+ .box .box-item .item-left .word-content .main-title{
+   font-size:34rpx;
+   font-weight: bold;
+   color:#333333;
+ }
+ .box .box-item .item-left .word-content .sub-title{
+   font-size:24rpx;
+   color:#999999;   
+ }
+ .box .box-item .item-right{
+   width:130rpx;
+   height:54rpx;
+   border:2rpx solid #EA5959;
+   text-align: center;
+   line-height:54rpx;
+   font-size: 26rpx;
+   color:#EA5959;
+   border-radius:30rpx;
+ }
+ .box .box-item .yidaka{
+   border: 2rpx solid #F2F2F2;
+   background-color:#F8F8F8;
+   color:#BDBDBD;
+ }

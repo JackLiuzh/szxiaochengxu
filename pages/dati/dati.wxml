@@ -1,0 +1,131 @@
+<view class="container" >
+    <view class="box-swiper">
+        <swiper style="height: {{clientHeight?clientHeight+'px':'auto'}}" class=''  current="{{currentTab}}"  duration="200" bindchange="swiperchange">
+            <view class="swiper-box">
+                <swiper-item>
+                   <view id="mydocumheight">
+                      <view class="box-top">
+                          <view class="top-type">
+                             <view class="type-nu">
+                                 <text class=".nu-red">1</text>
+                                 <text >/</text>
+                                 <text>125</text>
+                             </view>
+                             <view class="type-qname">
+                                  <text>单选题</text>
+                             </view>
+                          </view>
+                          <view class="top-image">
+                              <image src="../../images/shoucang@2x.png"/>
+                          </view>
+                      </view>
+                      <view class="box-title">
+                          <view class="title-content">
+                              <rich-text>近年来，科学家们认为掌握双语会对人的大脑产 生深刻的影响，提高与语言无关的认知能力，甚 至还能防止老年痴呆。长期以来，研究人员、教 育工作者和决策者都认为第二语言是一种干扰。 不过，研究人员现在发现，这种干扰与其说是障 碍，倒不如说让使用者因祸得福。它迫使大脑去 解决内部冲突，从而使大脑得到增强认知能力的 锻炼。</rich-text>
+                          </view>
+                          <view class="title-options">
+                              <view class="options-items">
+                                  <text class="items-zimu">A</text>
+                                  <text>心理起源说</text>
+                              </view>
+                              <view class="options-items">
+                                  <text class="items-zimu">B</text>
+                                  <text>心理起源说</text>
+                              </view>     
+                              <view class="options-items">
+                                  <text class="items-zimu">C</text>
+                                  <text>心理起源说</text>
+                              </view>
+                              <view class="options-items">
+                                  <text class="items-zimu">D</text>
+                                  <text>劳动起源说</text>
+                              </view>
+                          </view>
+                      </view>
+                      <view class="box-line"></view>
+                      <view class="box-answer">
+                           <view class="answer-only">
+                              <text>答案：</text>
+                              <text class="only-blue">B</text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">考点</text>
+                               <text class="an-content">教育观数据库飞机迪斯科飞机教育观数据库飞机迪斯科飞机。</text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">解析</text>
+                               <text class="an-content">而“简单”背后的真实含义，应该是“易于理解”，更容易理解，看起来并不难掌握，而这个才是“简单”一所传达出的用户的真实意图。太过复杂的生活本身，是驱使我们追求易于理解的“简单”的原动力。但是，是否真的都往简单了做就可以了？当然不。                                    </text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">来源</text>
+                               <text class="an-content">2013年四川公务员录用考试《行测》真题（下 半年）</text>
+                           </view>
+                      </view>
+                </view> 
+            </swiper-item>
+            <swiper-item>
+                   <view id="mydocumheight">
+                      <view class="box-top">
+                          <view class="top-type">
+                             <view class="type-nu">
+                                 <text class=".nu-red">2</text>
+                                 <text >/</text>
+                                 <text>125</text>
+                             </view>
+                             <view class="type-qname">
+                                  <text>单选题</text>
+                             </view>
+                          </view>
+                          <view class="top-image">
+                              <image src="../../images/shoucang@2x.png"/>
+                          </view>
+                      </view>
+                      <view class="box-title">
+                          <view class="title-content">
+                              <rich-text>近年来，科学家们认为掌握双语会对人的大脑产 生深刻的影响，提高与语言无关的认知能力，甚 至还能防止老年痴呆。长期以来，研究人员、教 育工作者和决策者都认为第二语言是一种干扰。 不过，研究人员现在发现，这种干扰与其说是障 碍，倒不如说让使用者因祸得福。它迫使大脑去 解决内部冲突，从而使大脑得到增强认知能力的 锻炼。</rich-text>
+                          </view>
+                          <view class="title-options">
+                              <view class="options-items">
+                                  <text class="items-zimu">A</text>
+                                  <text>心理起源说</text>
+                              </view>
+                              <view class="options-items">
+                                  <text class="items-zimu">B</text>
+                                  <text>心理起源说</text>
+                              </view>     
+                              <view class="options-items">
+                                  <text class="items-zimu">C</text>
+                                  <text>心理起源说</text>
+                              </view>
+                              <view class="options-items">
+                                  <text class="items-zimu">D</text>
+                                  <text>劳动起源说</text>
+                              </view>
+                          </view>
+                      </view>
+                      <view class="box-line"></view>
+                      <view class="box-answer">
+                           <view class="answer-only">
+                              <text>答案：</text>
+                              <text class="only-blue">B</text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">考点</text>
+                               <text class="an-content">教育观数据库飞机迪斯科飞机教育观数据库飞机迪斯科飞机。</text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">解析</text>
+                               <text class="an-content">而“简单”背后的真实含义，应该是“易于理解”，更容易理解，看起来并不难掌握，而这个才是“简单”一所传达出的用户的真实意图。太过复杂的生活本身，是驱使我们追求易于理解的“简单”的原动力。但是，是否真的都往简单了做就可以了？当然不。                                    </text>
+                           </view>
+                           <view class="answer-kaodian">
+                               <text class="an-title">来源</text>
+                               <text class="an-content">2013年四川公务员录用考试《行测》真题（下 半年）</text>
+                           </view>
+                      </view>
+                </view> 
+            </swiper-item>
+
+          </view>
+        </swiper>
+    </view>
+</view>

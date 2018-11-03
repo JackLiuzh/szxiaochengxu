@@ -1,0 +1,29 @@
+/* pages/daka-setting/daka-setting.wxss */
+.switch-box{
+  margin-top:40rpx;
+  background-color: #fff;
+
+}
+.switch-box .cell{
+  height:88rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  margin: 0 30rpx;
+}
+.switch-box .cell .cell-left {
+  color:#333;
+  font-size: 30rpx;
+}
+.switch-box .cell:last-child{
+  border-top:1rpx solid #eee;
+}
+.switch-box .cell  .cell-right-text{
+  color:#999;
+  font-size: 30rpx;
+}
+.but-box{
+   margin-top: 60rpx;
+   padding:0 30rpx;
+}

@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/daka/daka",
+    "pages/shuati/shuati",
+    "pages/my/my",
+    "pages/shoucangjia/shoucangjia",
+    "pages/cuotiji/cuotiji",
+    "pages/dati/dati",
+    "pages/daka-zhuti-detail/daka-zhuti-detail",
+    "pages/daka_zhuti/daka_zhuti",
+    "pages/daka_detail/daka_detail",
+    "pages/haibao-demo2/haibao-demo2",
+    "pages/haibao-demo/haibao-demo",
+    "pages/haibao/haibao",
+    "pages/haibao-demo1/haibao-demo1",
+    "pages/my-about/my-about",
+    "pages/my-yijian/my-yijian",
+    "pages/daka-setting/daka-setting",
+    "pages/daka-zhuti-detaildone/daka-zhuti-detaildone",
+    "pages/daka_jiaru/daka_jiaru",
+    "pages/timeline/timeline",
+    "pages/me/me",
+    "pages/haibao-demo3/haibao-demo3",
+    "pages/tologin/tologin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "尚政公考",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#EA5959",
+    "borderStyle": "white",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "text": "打卡",
+        "pagePath": "pages/daka/daka",
+        "iconPath": "images/daka@2x.png",
+        "selectedIconPath": "images/daka1@2x.png"
+      },
+      {
+        "text": "刷题",
+        "pagePath": "pages/shuati/shuati",
+        "iconPath": "images/shuati@2x.png",
+        "selectedIconPath": "images/shuati1@2x.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/my",
+        "iconPath": "images/wode@2x.png",
+        "selectedIconPath": "images/wode1@2x.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "downloadFile": 20000
+  },
+  "debug": true
+}

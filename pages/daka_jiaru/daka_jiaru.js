@@ -1,0 +1,9 @@
+// pages/user/user.js
+const filter = require('../../utils/filter');
+Page(filter.loginCheck({
+  // ...
+  onLoad: function (options) {
+    // ...
+  },
+  // ...
+}));

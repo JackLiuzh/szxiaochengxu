@@ -1,0 +1,31 @@
+<view class="container">
+   <view class="content">
+
+      <view class="list_box" wx:for="{{ list }}" wx:key="this" wx:for-item="parentItem" wx:for-index="parentIndex">
+           <view class="list">
+               <view  catchtap="listTap" class="list_name_box" data-parentindex="{{parentIndex}}">
+                    <view class="name_box_left">
+                      <image wx:if="{{ parentItem.show }}" style="width:30rpx;height:30rpx;" src="../../images/shouqi1@2x.png" mode="aspectFill"/>
+                      <image wx:else style="width:30rpx;height:30rpx;" src="../../images/zhankai1@2x.png" mode="aspectFill"/>
+                      <text class="">{{ parentItem.firstName }}</text>
+                    </view>
+                    <view class="name_box_right">
+                        <text>{{ parentItem.firstNum }}</text>
+                    </view>
+               </view>
+               <view class="list_item_box" wx:if="{{ parentItem.show }}">
+                  <view class="list_item" wx:for="{{ parentItem.item }}" wx:key="this" data-index="{{ index }}" data-parentindex="{{ parentIndex }}">
+                      <view class="list_item_name_box">
+                         <view class="bred"></view>
+                         <text>{{ item.secondName }}</text>
+                      </view>
+                      <view class="name_box_right">
+                        <text>{{ item.secondNum }}</text>
+                      </view>
+                  </view>
+               </view>
+           </view>
+      </view>
+
+   </view>
+</view>

@@ -1,0 +1,32 @@
+<view class="con-box">
+  <navigator url="../daka-zhuti-detaildone/daka-zhuti-detaildone">
+     <view class="box-item">
+        <image class="item-image" src="../../images/test.png" />
+        <view class="box-words">
+            <text class="words-title">第一天: "存在差异"相关易混</text>
+            <view class="words-text">
+                 <text class="text-guan">第1关</text>
+                 <view class="text-suo">
+                     
+                 </view>
+            </view>
+        </view>
+     </view>
+  </navigator>
+  <navigator url="../daka-zhuti-detail/daka-zhuti-detail">
+     <view class="box-item">
+        <image class="item-image" src="../../images/test.png" />
+        <view class="box-words">
+            <text class="words-title">第一天: "存在差异"相关易混</text>
+            <view class="words-text">
+                 <text class="text-guan">第1关</text>
+                 <view class="text-suo">
+                     <image  src="../../images/suo@2x.png" />
+                     <text>尚未解锁</text>
+                 </view>
+            </view>
+        </view>
+     </view>
+  </navigator>
+</view>
+

@@ -1,0 +1,162 @@
+/* pages/daka/daka.wxss */
+.maintitle{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width:153rpx;
+  background-color: white;
+  height: 60rpx;
+  border-top-right-radius:30rpx;
+  border-bottom-right-radius:30rpx; 
+  align-items: center;
+}
+.maintitle image {
+  width: 26rpx;
+  height:26rpx;
+  margin-right:10rpx;
+}
+.maintitle text {
+  color:black;
+  font-size:26rpx;
+ }
+.analysis {
+   display: flex;
+   flex-direction: column;
+}
+.analysis .tongji{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}  
+.analysis .tongji .box-item{
+  display: flex;
+  width: 230rpx;
+  height: 180rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.analysis .tongji .box-item .word{
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 10rpx;
+}
+.analysis .tongji .box-item .number{
+  font-size: 50rpx;
+  color: #EA5959;
+  font-weight: bold;
+}
+.analysis .tongji .box-item .danwei{
+  font-size: 26rpx;
+  color: #EA5959;
+  margin-left: 10rpx;
+}
+.analysis  .result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.analysis  .result .box-cell{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width:330rpx;
+  height: 160rpx;
+  background-color: #fff;
+  border:1rpx solid #fff;
+  border-radius:20rpx;
+}
+.analysis  .result .box-cell image{
+   width:80rpx;
+   height:80rpx;
+   margin-left:40rpx;
+}
+.analysis  .result .box-cell .textbox{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+.analysis  .result .box-cell .textbox .wo{
+   font-size: 28rpx;
+   color:#333333;
+   font-weight: bold;
+   margin-bottom:7rpx;
+}
+.analysis  .result .box-cell .textbox .nu{
+   font-size: 24rpx;
+   color:#999999;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  margin:0 auto;
+  margin-top:30rpx;
+  width:94%;
+  padding:36rpx 30rpx 36rpx 30rpx;
+  box-sizing:border-box;
+  background-color:#fff;
+  border-radius: 20rpx;
+}
+.content .list_box {
+  width:100%;
+}
+.content .list_name_box {
+  display: flex;
+  justify-content: space-between;
+  line-height: 85rpx;
+  border-bottom:1rpx solid #EFEFEF;
+}
+.content .list_name_box .name_box_left{
+  display: flex;
+  align-items: center;
+}
+.content .list_name_box .name_box_left image{
+   width:30rpx;
+   height:30rpx;
+   margin-right:20rpx;
+}
+.content .list_name_box .name_box_left text {
+   font-size: 34rpx;
+   font-weight: bold;
+}
+.content .list_name_box .name_box_right text {
+  font-size:24rpx;
+}
+.content .list_name_box .name_box_right text.redcolor{
+  color: #EA5959;
+}
+
+.content .list_item_box .list_item {
+  line-height: 85rpx;
+  border-bottom: 1rpx solid #EFEFEF;
+}
+
+.content .list_item_box .list_item_name_box{
+  display: flex;
+  align-items: center;
+}
+
+.content .list_item_box .list_item_name_box .bred{
+   width:16rpx;
+   height:16rpx;
+   background-color: #EA5959;
+   border-radius: 50%;
+   margin-right:27rpx;
+   margin-left:9rpx;
+}
+.content .list_item_box .list_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .list_item_box .list_item_name_box text{
+  font-size: 34rpx;
+}
+.content .list_item_box .name_box_right text{
+   font-size: 24rpx;
+
+}
+.content .list_item_box .name_box_right text.redcolor{
+   color:#EA5959;
+}

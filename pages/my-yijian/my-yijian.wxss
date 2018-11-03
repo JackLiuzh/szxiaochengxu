@@ -1,0 +1,12 @@
+.con-box{
+
+}
+.con-box .text-box{
+  background-color: #fff;
+  margin-top:1rpx; 
+  padding: 30rpx;
+}
+.con-box .btn-box{
+  margin-top:60rpx;
+  padding:0 30rpx;
+}

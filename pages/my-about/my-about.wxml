@@ -1,0 +1,12 @@
+<view class="con-box">
+     <view class="body">
+         <view class="body-top">
+             <image style="width:406rpx;height:388rpx;" src="../../images/xiao_icon.png" />
+             <text class="biaoti">尚政公考题库小程序</text>
+             <text class="banben">V0.0.2</text>
+         </view>
+         <view class="body-bom">
+                任何事物的呈现和传达都需要通过一定的媒介，在媒介承载的过程中，均会产生损耗。我们设计的目的之一就是将所传达的内容在                  媒介承载的过程中让损耗降到最低，呈现出我们想要给受众的东西，且能够被快速察觉、理解和获取（主动及被动的）。
+         </view>
+     </view>
+</view>

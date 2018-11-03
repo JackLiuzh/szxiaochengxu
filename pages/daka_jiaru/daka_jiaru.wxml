@@ -1,0 +1,78 @@
+<view class="box">
+    <view class="header">
+        <image class="header-image"  src="../../images/test.png"/>
+        <view class="sub-hezi">
+            <text class="main-title">手抄申论打卡</text>
+            <text class="sub-title" decode="{{ true }}">403人已参加&ensp;|&ensp;55次打卡</text>
+            <view class="heizi-but">
+              <navigator style="display:block;width:150rpx;height:54rpx;border:2rpx solid #fff;border-radius:30rpx;" url="../daka-setting/daka-setting">
+                <button>设置</button>
+              </navigator> 
+            </view>
+        </view>
+    </view>
+    <view class="body">
+      <navigator url="../daka_zhuti/daka_zhuti">
+        <view class="bd-content">
+            <view class="co-title">
+                 <text class="title-1">今日关卡 - 第一关</text>
+                 <text decode="true">全部主题(12)&nbsp;></text>
+            </view>
+            <view class="co-image">
+                 <image src="../../images/test.png" mode="aspectFill"/>
+                 <view class="im-words">
+                     <text>第一天：“存在差异”相关易混成与辨析手抄申论打卡</text>
+                     <button>打卡</button>
+                 </view>
+            </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="footer">
+        <text class="footer-title">打卡日记</text>
+        <view class="item-box">
+
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+            
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+            
+
+        </view>
+    </view>
+</view>
+

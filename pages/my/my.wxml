@@ -1,0 +1,74 @@
+
+<view class="con-box">
+     <view class="view-use">
+         <image  src="../../images/test.png" /> 
+         <text class="use-name">永无止境</text> 
+     </view>
+     <view class="view-body">
+         <navigator url="../my-yijian/my-yijian">
+         <view class="cell">
+              <view class="left">
+                  <image style="width:30rpx;height:30rpx;" src="../../images/jianyi@2x.png" />
+                  <text class="left-word">意见反馈</text>
+              </view>
+              <view class="right">></view>
+         </view>
+         </navigator>
+         <navigator url="../my-about/my-about">
+         <view class="cell">
+              <view class="left">
+                  <image style="width:30rpx;height:30rpx;" src="../../images/guanyu@2x.png" />
+                  <text class="left-word">关于我们</text>
+              </view>
+              <view class="right">></view>
+         </view>
+         </navigator>
+     </view>
+     <view class="footer">
+        <text class="footer-title">我的打卡记录</text>
+        <view class="item-box">
+
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+            
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="item">
+                <view class="item-cc">
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <view class="item-content">
+                        <text class="name">小心二</text>
+                        <text class="time">15小时前 - 已坚持8天</text>
+                        <text class="words">治党需严管与厚爱并行</text>
+                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                    </view>
+                </view>
+            </view>
+            
+
+        </view>
+
+    </view>
+</view>

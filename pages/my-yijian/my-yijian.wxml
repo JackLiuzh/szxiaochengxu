@@ -1,0 +1,10 @@
+<view class="con-box">
+    <form>
+        <view class="text-box">
+            <textarea auto-focus="true" placeholder="说说你的问题"  style="height: 300rpx;" />
+        </view>
+        <view class="btn-box">
+            <button type="warn" disabled='true' formType="submit">提交</button>
+        </view>
+     </form>
+</view>

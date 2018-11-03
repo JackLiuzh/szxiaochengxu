@@ -1,0 +1,44 @@
+<view class="box">
+  <navigator url="../tologin/tologin">
+    <view class="box-item">
+         <view class="item-left">
+             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
+             <view class="word-content">
+                  <text class="main-title">21天公考备考训练营</text>
+                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
+             </view>
+         </view>
+         <view class="item-right yidaka">
+             <text class="">已打卡</text>
+         </view>
+    </view>
+  </navigator>
+  <navigator url="../daka_jiaru/daka_jiaru">
+    <view class="box-item">
+         <view class="item-left">
+             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
+             <view class="word-content">
+                  <text class="main-title">21天公考备考训练营</text>
+                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
+             </view>
+         </view>
+         <view class="item-right">
+             <text>打卡</text>
+         </view>
+    </view>
+  </navigator>
+  <navigator url="../daka_detail/daka_detail">
+    <view class="box-item">
+         <view class="item-left">
+             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
+             <view class="word-content">
+                  <text class="main-title">21天公考备考训练营</text>
+                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
+             </view>
+         </view>
+         <view class="item-right">
+             <text>加入</text>
+         </view>
+    </view>
+  </navigator>
+</view>

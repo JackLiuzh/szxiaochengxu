@@ -1,0 +1,13 @@
+<!--index.wxml-->
+
+<poster id="poster" hide-loading="{{true}}" preload="{{true}}" config="{{szConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+    <button>生成海报</button>
+</poster>
+<button bindtap="onCreatePoster">异步生成海报</button>
+
+ <view class="modalDlg" wx:if="{{showModal}}">
+      <view class='close_mask' bindtap="close_mask">X</view>
+    
+</view>
+<button class='recharge' bindtap="submit">充值</button>
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
