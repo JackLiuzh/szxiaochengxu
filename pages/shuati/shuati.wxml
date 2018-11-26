@@ -57,9 +57,9 @@
                       <text class="">{{ parentItem.name }}</text>
                     </view>
                     <view class="name_box_right">
-                        <text class="redcolor">{{ parentItem.total }}</text>
-                        <text>/</text>
-                        <text>{{ parentItem.tot }}</text>
+                        <text style="display:none;" class="redcolor">{{ parentItem.total }}</text>
+                        <text style="display:none;">/</text>
+                        <text style="display:none;">{{ parentItem.tot }}</text>
                     </view>
                </view>
                <view wx:if="{{ parentItem.show }}" class="list_item_box">
@@ -70,9 +70,9 @@
                           <text>{{ item.name }}</text>
                         </view>
                         <view class="name_box_right">
-                          <text class="redcolor">{{ item.aready_total }}</text>
-                          <text>/</text>
-                          <text>{{ item.tot }}</text>
+                          <text style="display:none;" class="redcolor">{{ item.aready_total }}</text>
+                          <text style="display:none;">/</text>
+                          <text style="display:none;">{{ item.tot }}</text>
                         </view>
                     </view>
                   </navigator>

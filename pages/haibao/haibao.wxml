@@ -1,8 +1,0 @@
-<!--pages/haibao/haibao.wxml-->
-<button open-type="getUserInfo" lang="zh_CN" bindtap="getUserInfo">获取用户信息</button>
-<button bindtap="handlePoster">生成海报</button>
-<view>
-    <canvas style="width:750px;height:1344px;" canvas-id="notes"></canvas>
-</view>
-
-
