@@ -26,8 +26,23 @@ function getStorage (key) {
 
 function getLocation (type) {
     return new Promise((resolve, reject) => {
-        wx.getLocation({ type: type, success: resolve, fail: reject })
+      wx.getLocation({ type: type, success: resolve, fail: reject })
     })
+}
+
+function uploadFile(tempFilePath, name, uid) {
+  return new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: 'http://cs.szgk.cn/api.php?action=uploadimg&authhash=4444',
+        filePath: tempFilePath,
+        name : name,
+        formData: {
+           'uid':uid
+        },
+        success: resolve,
+        fail: reject
+      })
+  })
 }
 
 module.exports = {
@@ -36,5 +51,6 @@ module.exports = {
   setStorage,
   getStorage,
   getLocation,
-  original: wx
+  original: wx,
+  uploadFile
 }

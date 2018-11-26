@@ -10,45 +10,51 @@ Page({
        {
           firstName:"常识",
           firstNum:586,
+          firsttotal:300,
           item:[
             {
               secondName:"人文与历史",
-              secondNum:826
+              secondNum:826,
+              secondtotal:900
             },
             {
               secondName: "地理与环境",
-              secondNum: 82
+              secondNum: 82,
+              secondtotal:90
             }
           ]
        },
        {
           firstName:"判断推理",
           firstNum:5669,
+          firsttotal: 300,
           item:[
             {
               secondName:"判断1",
-              secondNum:89
+              secondNum:89,
+              secondtotal: 90
             },
             {
               secondName:"判断2",
-              secondNum:90
+              secondNum:90,
+              secondtotal: 90
             }
           ]
        }
 
-      ]
+      ],
+      datalist: []
   },
   // 点击第一层
   listTap(e) {
     let Index = e.currentTarget.dataset.parentindex,//获得点击的下标值
-        list = this.data.list;
-    list[Index].show = !list[Index].show || false;//记录变换其打开、关闭的状态,true 代表已展开，false 未打开
-    if(list[Index].show) {
+      datalist = this.data.datalist;
+    datalist[Index].show = !datalist[Index].show || false;//记录变换其打开、关闭的状态,true 代表已展开，false 未打开
+    if(datalist[Index].show) {
         //执行， 让其他展开的变为收齐状态
-      this.packUp(list, Index);
+      this.packUp(datalist, Index);
     }
-
-    this.setData({list})
+    this.setData({datalist})
   },
 
   //收起所有的展开项
@@ -66,12 +72,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    var uid = app.globalData.uid
     var parmas = {
-      'action': '528'
+      'uid': uid
     }
-    app.tiku.getexamper('exampaper', parmas).then(d => {
-      console.log(d.data.status)
+    app.tiku.shoucanglist(parmas).then(d => {
+        console.log(d)
+        if(d.data.data.length) {
+           that.setData({
+             datalist: d.data.data
+           })
+        }
     })
+  },
+
+  //跳转到commondati 页 
+  navcommondati: function(e) {
+     var id = e.currentTarget.dataset.id
+     var towhere = e.currentTarget.dataset.towhere
+     wx.navigateTo({
+       url: '/pages/commondati/commondati?second_id=' + id + '&towhere=' + towhere,
+     })
+       
   },
 
   /**

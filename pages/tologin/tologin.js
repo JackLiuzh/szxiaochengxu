@@ -10,17 +10,23 @@ Page({
   },
   bindGetUserInfo: function(e) {
     var that =this;
-    app.wechat.setStorage('userInfo',e.detail.userInfo);
+    // app.wechat.setStorage('userInfo',e.detail.userInfo);
     // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']){
-          app.wechat.setStorage('islogin', true);
-        }else {
-          app.wechat.setStorage('islogin', false);
+    if (e.detail.userInfo) {
+      app.wechat.setStorage('userInfo', e.detail.userInfo);
+      var uid = app.wechat.getStorage('uid');
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            app.wechat.setStorage('isauth', true);
+          } else {
+            app.wechat.setStorage('isauth', false);
+          }
         }
-      }
-    })
+      })
+    } else {
+       console.log("用户拒绝授权用户信息")
+    }
     wx.navigateBack({
       delta: 1
     })

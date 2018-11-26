@@ -84,7 +84,7 @@ padding-left:58rpx;
     background-color:#fff;
     padding:20rpx;
     border-radius:10rpx;
-    padding-bottom:42rpx;
+    /* padding-bottom:42rpx; */
 }
 .box .body .bd-content .co-title{
     display: flex;
@@ -112,22 +112,22 @@ padding-left:58rpx;
   z-index: 12;
   color: #fff;
   font-size:36rpx;
-  top:70rpx;
   padding:30rpx;
  
 }
 .box .body .bd-content .co-image .im-words button{
   width:190rpx;
   height:64rpx;
-  border-radius: 40rpx;
+  border-radius:40rpx;
   background-color:#EA5959;
   color:#fff;
-  line-height: 64rpx;
+  line-height:64rpx;
   position:relative;
-  left:-210rpx;
-  bottom:-42rpx;
+  left:-143rpx;
+  bottom:-146rpx;
   padding:0;
-  font-size: 30rpx;
+  font-size:30rpx;
+
 }
 .box .body .bd-content .co-image image{
    position: absolute;

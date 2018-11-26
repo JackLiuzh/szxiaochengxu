@@ -1,44 +1,22 @@
 <view class="box">
-  <navigator url="../tologin/tologin">
-    <view class="box-item">
+  <block  wx:for="{{ datalist }}" wx:key="key">
+    <view data-state="{{ item.state }}" data-id="{{ item.id }}" bindtap="onSwitchnavto" class="box-item">
          <view class="item-left">
-             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
+             <image style="width:100rpx;height:100rpx;"  src="{{ item.picture }}" />
              <view class="word-content">
-                  <text class="main-title">21天公考备考训练营</text>
-                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
+                  <text class="main-title">{{ item.name }}</text>
+                  <text class="sub-title" decode="{{true}}" space="{{true}}">{{ item.user_count }}人参加&nbsp;&nbsp;{{ item.daka_count }}次打卡</text>
              </view>
          </view>
-         <view class="item-right yidaka">
+         <view wx:if="{{ item.state==2 }}" class="item-right yidaka">
              <text class="">已打卡</text>
          </view>
-    </view>
-  </navigator>
-  <navigator url="../daka_jiaru/daka_jiaru">
-    <view class="box-item">
-         <view class="item-left">
-             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
-             <view class="word-content">
-                  <text class="main-title">21天公考备考训练营</text>
-                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
-             </view>
-         </view>
-         <view class="item-right">
+         <view wx:if="{{ item.state==1 }}" class="item-right">
              <text>打卡</text>
          </view>
-    </view>
-  </navigator>
-  <navigator url="../daka_detail/daka_detail">
-    <view class="box-item">
-         <view class="item-left">
-             <image style="width:100rpx;height:100rpx;"  src="../../images/test.png" />
-             <view class="word-content">
-                  <text class="main-title">21天公考备考训练营</text>
-                  <text class="sub-title" decode="{{true}}" space="{{true}}">3654人参加&nbsp;&nbsp;525次打卡</text>
-             </view>
-         </view>
-         <view class="item-right">
+         <view wx:if="{{ item.state==0 }}" class="item-right">
              <text>加入</text>
          </view>
     </view>
-  </navigator>
+  </block>
 </view>

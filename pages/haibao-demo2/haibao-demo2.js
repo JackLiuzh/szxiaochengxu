@@ -255,7 +255,7 @@ Page({
     })
   },
   //点击生成
-  formSubmit: function (e) {
+  shengchenghaibao : function (e) {
     var that = this;
     this.setData({
       maskHidden: false

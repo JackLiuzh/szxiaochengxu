@@ -6,15 +6,73 @@ Page({
    * 页面的初始数据
    */
   data: {
-      
+     hasMore: true,
+     page: 1,
+     perpage:2,
+     datalist:[] 
   },
+  
+  loadMore() {
+    if(!this.data.hasMore) return;
 
+    wx.showLoading({ title: "拼命加载中..."});
+    return app.wechat.getStorage("uid").then(d => {
+            if (d.data) {
+              var params = {
+                "uid": d.data,
+                "page": this.data.page++,
+                "perpage": this.data.perpage
+              }
+              app.sz.dakazhutilist(params).then(d => {
+                if (d.data.data.length) {
+                  this.setData({
+                    datalist: this.data.datalist.concat(d.data.data)
+                  })
+                }else {
+                   this.setData({
+                      hasMore: false,
+                      title:'没有更多了'
+                   })
+                }
+              })
+            } else {
+              console.log("未获得用户uid")
+            }
+            wx.hideLoading();
+          });
+  },
+  onSwitchnavto(e) {
+     var state = e.currentTarget.dataset.state;
+     var id = e.currentTarget.dataset.id;
+     console.log(state)
+     switch(state) {
+        case 0:
+          wx.navigateTo({
+            url: '../daka_detail/daka_detail?id=' + id,
+          });
+          break;
+        case 1:
+          wx.navigateTo({
+            url: '../daka_jiaru/daka_jiaru?id=' +id,
+          });
+          break;
+        case 2:
+          wx.navigateTo({
+            url: '../daka_jiaru/daka_jiaru?id=' + id,
+          });
+          break;
+     }
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.loadMore()
+   
     
-    console.log(app.globalData.testdata)
+    //app.sz.dakazhutilist(params);
+    
     
   },
 
@@ -57,7 +115,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+     this.loadMore()
   },
 
   /**

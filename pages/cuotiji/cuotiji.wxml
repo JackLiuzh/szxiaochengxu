@@ -1,104 +1,27 @@
 <view class="container">
    <view class="content">
-      <view class="list_box">
-           <view class="list">
-               <view class="list_name_box">
+      <view wx:for="{{ datalist }}" wx:key="key" wx:for-index="parentIndex" wx:for-item="parentItem" class="list_box">
+           <view  class="list">
+               <view catchtap="listTap" data-parentindex="{{ parentIndex }}" class="list_name_box">
                     <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi1@2x.png" mode="aspectFill"/>
-                      <text class="">常识</text>
+                      <image wx:if="{{ parentItem.show }}" style="width:30rpx;height:30rpx;" src="../../images/shouqi1@2x.png" mode="aspectFill"/>
+                      <image wx:else style="width:30rpx;height:30rpx;" src="../../images/zhankai1@2x.png" mode="aspectFill"/>
+                      <text class="">{{ parentItem.name }}</text>
                     </view>
                     <view class="name_box_right">
-                        <text>5826</text>
+                        <text>{{ parentItem.total }}</text>
                     </view>
                </view>
-               <view class="list_item_box">
-                  <view class="list_item">
+               <view wx:if="{{ parentItem.show }}" class="list_item_box">
+                  <view bindtap="navcommondati" data-towhere="cuoti" data-id="{{ item.id }}"  wx:for="{{ parentItem.data }}" wx:key="key" class="list_item">
                       <view class="list_item_name_box">
                          <view class="bred"></view>
-                         <text>人文与历史</text>
+                         <text>{{ item.name }}</text>
                       </view>
                       <view class="name_box_right">
-                        <text>826</text>
+                        <text>{{ item.total }}</text>
                       </view>
                   </view>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text>826</text>
-                      </view>
-                  </view>  
-               </view>
-           </view>
-      </view>
-
-
-      <view class="list_box">
-           <view class="list">
-               <view class="list_name_box">
-                    <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi1@2x.png" mode="aspectFill"/>
-                      <text class="">判断推理</text>
-                    </view>
-                    <view class="name_box_right">
-                        <text>5826</text>
-                    </view>
-               </view>
-               <view class="list_item_box">
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>人文与历史</text>
-                      </view>
-                      <view class="name_box_right">
-                         <text>826</text>
-                      </view>
-                  </view>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                         <text>826</text>
-                      </view>
-                  </view>  
-               </view>
-           </view>
-      </view>
-
-      <view class="list_box">
-           <view class="list">
-               <view class="list_name_box">
-                    <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi1@2x.png" mode="aspectFill"/>
-                      <text class="">判断推理</text>
-                    </view>
-                    <view class="name_box_right">
-                        <text>5826</text>
-                    </view>
-               </view>
-               <view class="list_item_box">
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>人文与历史</text>
-                      </view>
-                      <view class="name_box_right">                        
-                         <text>826</text>
-                      </view>
-                  </view>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text>826</text>
-                      </view>
-                  </view>  
                </view>
            </view>
       </view>

@@ -8,21 +8,21 @@
             <view class="box-item">
                 <text class="word">预测分</text>
                 <view>
-                   <text class="number">86</text>
+                   <text class="number">{{ score }}</text>
                    <text class="danwei">分</text>
                 </view>
             </view>
             <view class="box-item">
                 <text class="word">正确率</text>
                 <view>
-                   <text class="number">80</text>
+                   <text class="number">{{ accuracy }}</text>
                    <text class="danwei">%</text>
                 </view>
             </view>
             <view class="box-item">
                 <text class="word">累计做题</text>
                 <view>
-                   <text class="number">5018</text>
+                   <text class="number">{{ user_zuoti_total }}</text>
                 </view>
             </view>
         </view>
@@ -32,7 +32,7 @@
                  <image src="../../images/cuotiji@2x.png" mode='aspectFill' />
                  <view class="textbox">
                     <text class="wo">错题级</text>
-                    <text class="nu">26</text>
+                    <text class="nu">{{ wrong_total }}</text>
                  </view>
               </view>
               </navigator>
@@ -41,132 +41,41 @@
                  <image src="../../images/shoucangjia@2x.png" mode='aspectFill' />
                  <view class="textbox">
                     <text class="wo">收藏夹</text>
-                    <text class="nu">563</text>
+                    <text class="nu">{{ collect_total }}</text>
                  </view>
               </view>
               </navigator>
         </view>
    </view>
    <view class="content">
-      <view class="list_box">
+      <view  wx:for="{{ ability_list }}" wx:key="this" wx:for-item="parentItem" wx:for-index="parentIndex" class="list_box">
            <view class="list">
-               <view class="list_name_box">
+               <view catchtap="listTap" data-parentindex="{{parentIndex}}" class="list_name_box">
                     <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi@2x.png" mode="aspectFill"/>
-                      <text class="">常识</text>
+                      <image wx:if="{{ parentItem.show }}" style="width:30rpx;height:30rpx;" src="../../images/shouqi@2x.png" mode="aspectFill"/>
+                      <image wx:else style="width:30rpx;height:30rpx;" src="../../images/zhankai@2x.png" mode="aspectFill"/>
+                      <text class="">{{ parentItem.name }}</text>
                     </view>
                     <view class="name_box_right">
-                        <text class="redcolor">352</text>
+                        <text class="redcolor">{{ parentItem.total }}</text>
                         <text>/</text>
-                        <text>5826</text>
+                        <text>{{ parentItem.tot }}</text>
                     </view>
                </view>
-               <view class="list_item_box">
-                  <navigator url="../dati/dati">
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>人文与历史</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>
+               <view wx:if="{{ parentItem.show }}" class="list_item_box">
+                  <navigator data-parentindex="{{ parentIndex }}" data-index="{{ index }}" wx:for="{{ parentItem.children }}" wx:key="this" url="../dati/dati?ability_secondId={{ item.id }}&ability_title={{ item.name }}">
+                    <view class="list_item">
+                        <view class="list_item_name_box">
+                          <view class="bred"></view>
+                          <text>{{ item.name }}</text>
+                        </view>
+                        <view class="name_box_right">
+                          <text class="redcolor">{{ item.aready_total }}</text>
+                          <text>/</text>
+                          <text>{{ item.tot }}</text>
+                        </view>
+                    </view>
                   </navigator>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>  
-               </view>
-           </view>
-      </view>
-
-
-      <view class="list_box">
-           <view class="list">
-               <view class="list_name_box">
-                    <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi@2x.png" mode="aspectFill"/>
-                      <text class="">判断推理</text>
-                    </view>
-                    <view class="name_box_right">
-                        <text class="redcolor">352</text>
-                        <text>/</text>
-                        <text>5826</text>
-                    </view>
-               </view>
-               <view class="list_item_box">
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>人文与历史</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>  
-               </view>
-           </view>
-      </view>
-
-      <view class="list_box">
-           <view class="list">
-               <view class="list_name_box">
-                    <view class="name_box_left">
-                      <image style="width:30rpx;height:30rpx;" src="../../images/shouqi@2x.png" mode="aspectFill"/>
-                      <text class="">判断推理</text>
-                    </view>
-                    <view class="name_box_right">
-                        <text class="redcolor">352</text>
-                        <text>/</text>
-                        <text>5826</text>
-                    </view>
-               </view>
-               <view class="list_item_box">
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>人文与历史</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>
-                  <view class="list_item">
-                      <view class="list_item_name_box">
-                         <view class="bred"></view>
-                         <text>地理与环境</text>
-                      </view>
-                      <view class="name_box_right">
-                        <text class="redcolor">52</text>
-                        <text>/</text>
-                        <text>826</text>
-                      </view>
-                  </view>  
                </view>
            </view>
       </view>

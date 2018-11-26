@@ -1,9 +1,9 @@
 <view class="box">
     <view class="header">
-        <image class="header-image"  src="../../images/test.png"/>
+        <image class="header-image"  src="{{ clock_info.picture }}"/>
         <view class="sub-hezi">
-            <text class="main-title">手抄申论打卡</text>
-            <text class="sub-title" decode="{{ true }}">403人已参加&ensp;|&ensp;55次打卡</text>
+            <text class="main-title">{{ clock_info.name }}</text>
+            <text class="sub-title" decode="{{ true }}">{{ join_usernum }}人已参加&ensp;|&ensp;{{ daka_usernum  }}次打卡</text>
             <view class="heizi-but">
               <navigator style="display:block;width:150rpx;height:54rpx;border:2rpx solid #fff;border-radius:30rpx;" url="../daka-setting/daka-setting">
                 <button>设置</button>
@@ -12,66 +12,42 @@
         </view>
     </view>
     <view class="body">
-      <navigator url="../daka_zhuti/daka_zhuti">
+      
         <view class="bd-content">
-            <view class="co-title">
-                 <text class="title-1">今日关卡 - 第一关</text>
-                 <text decode="true">全部主题(12)&nbsp;></text>
+            <view data-clock_id="{{ clock_id }}" bindtap="goallzhuti" class="co-title">
+                 <text class="title-1">今日关卡 - 第{{  guan_num }}关</text>
+                 <text decode="true">全部主题({{ total_guan_count }})&nbsp;></text>
             </view>
-            <view class="co-image">
-                 <image src="../../images/test.png" mode="aspectFill"/>
-                 <view class="im-words">
-                     <text>第一天：“存在差异”相关易混成与辨析手抄申论打卡</text>
-                     <button>打卡</button>
-                 </view>
-            </view>
+            <view data-clock_id="{{ clock_id }}"  bindtap="gocurrent" class="co-image" style="overflow:hidden;">
+                 <image style="width:650rpx;height:325rpx;" src="../../images/test.png" mode="aspectFill"/>
+                 <view class="im-words" style="height:267rpx;">
+                     <text style="position:relative;top:46rpx;">{{ guan_list_info.title  }}</text>
+                     <button wx:if="{{ today_ifdaka==0 }}">打卡</button>
+                     <block wx:else>
+                         <button style="background:white;color:#52CC87;padding-left:20rpx;">已打卡</button>
+                         <image style="width:30rpx;height:30rpx;position:relative;top:96rpx;left:16rpx;" src="../../images/yidaka.png"/>
+                     </block>
+                 </view> 
+            </view>        
         </view>
-      </navigator>
+     
     </view>
-    <view class="footer">
+    <view wx:if="{{comment_list.length}}" class="footer">
         <text class="footer-title">打卡日记</text>
         <view class="item-box">
 
-            <view class="item">
+            <view wx:for="{{ comment_list }}" wx:key="key" class="item">
                 <view class="item-cc">
-                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="{{ item.user_avatar }}"/>
                     <view class="item-content">
-                        <text class="name">小心二</text>
-                        <text class="time">15小时前 - 已坚持8天</text>
-                        <text class="words">治党需严管与厚爱并行</text>
-                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
-                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
+                        <text class="name">{{ item.user_name  }}</text>
+                        <text class="time">{{ item.created }}小时前 - 已坚持{{ item.dakakeshi }}天</text>
+                        <text class="words">{{ item.content }}</text>
+                        <image wx:if="{{ img_url }}" style="width:190rpx;height:190rpx;background-color:green;" src="{{ item.img_url }}" />
+                        <text class="sign">{{ item.clock_list_title }}</text>
                     </view>
                 </view>
             </view>
-            
-            <view class="item">
-                <view class="item-cc">
-                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
-                    <view class="item-content">
-                        <text class="name">小心二</text>
-                        <text class="time">15小时前 - 已坚持8天</text>
-                        <text class="words">治党需严管与厚爱并行</text>
-                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
-                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
-                    </view>
-                </view>
-            </view>
-
-            <view class="item">
-                <view class="item-cc">
-                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
-                    <view class="item-content">
-                        <text class="name">小心二</text>
-                        <text class="time">15小时前 - 已坚持8天</text>
-                        <text class="words">治党需严管与厚爱并行</text>
-                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
-                        <text class="sign">第1天：“存在差异”相关易混成与读析手抄申论打卡</text>
-                    </view>
-                </view>
-            </view>
-            
-
         </view>
     </view>
 </view>

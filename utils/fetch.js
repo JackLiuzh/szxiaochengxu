@@ -8,7 +8,7 @@
 function szfetch (api, path, params) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: `${api}?action=${path}`,
+      url: `${api}?action=${path}&authhash=445454554`,
       data: Object.assign({}, params),
       header: { 'Content-Type': 'json' },
       success: resolve,
@@ -20,7 +20,7 @@ function szfetch (api, path, params) {
 function tikufetch (api, path, params) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: `${api}/${path}`,
+      url: `${api}/${path}?authhash=445454554`,
       data: Object.assign({}, params),
       header: { 'Content-Type': 'json' },
       success: resolve,
