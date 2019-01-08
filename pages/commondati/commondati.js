@@ -34,13 +34,15 @@ Page({
     tot: '',//试题总数
     uid: '',
     totaltime: '',
-    ability_title: ''
+    ability_title: '',
+    currentpage:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({"title": "拼命加载中..."})
     var that = this
     wx.getSystemInfo({
       success: function (res) {
@@ -52,6 +54,7 @@ Page({
     console.log(options)
 
     var towhere = options.towhere
+    that.setData({ currentpage: towhere})
     if(towhere=="shoucang") {
       //根据ability_secondId 
       var uid = app.globalData.uid
@@ -63,9 +66,16 @@ Page({
       app.tiku.shoucangti(params).then(d => {
         console.log(d)
         if (d.data.data.length) {
-          that.setData({
-            list: d.data.data
-          })
+          for (let i = 0; i < d.data.data.length; i++) {
+            WxParse.wxParse('reply' + i, 'html', d.data.data[i].title, that)
+            WxParse.wxParse('replynote' + i, 'html', d.data.data[i].note, that)
+            if (i === d.data.data.length - 1) {
+              WxParse.wxParseTemArray("replyTemArray", 'reply', d.data.data.length, that)
+              WxParse.wxParseTemArray("replyTemArrayNote", 'replynote', d.data.data.length, that)
+            }
+          }
+          that.setData({ list: d.data.data })
+          wx.hideLoading()
         }
       })
     }else if(towhere=="cuoti") {
@@ -77,9 +87,16 @@ Page({
       }
       app.tiku.cuotitimu(params).then(d=>{
          if(d.data.data.length) {
-            that.setData({
-              list: d.data.data
-            })
+           for (let i = 0; i < d.data.data.length; i++) {
+             WxParse.wxParse('reply' + i, 'html', d.data.data[i].title, that)
+             WxParse.wxParse('replynote' + i, 'html', d.data.data[i].note, that)
+             if (i === d.data.data.length - 1) {
+               WxParse.wxParseTemArray("replyTemArray", 'reply', d.data.data.length, that)
+               WxParse.wxParseTemArray("replyTemArrayNote", 'replynote', d.data.data.length, that)
+             }
+           }
+           that.setData({list: d.data.data})
+           wx.hideLoading()
          }
       })
     }
@@ -111,14 +128,14 @@ Page({
       for (var index in dd) {
         if (dd[index].id == id) {
           dd[index].xuanzhong = xiang
-          dd[index].iscollect = 1
+          //dd[index].iscollect = 1
         }
       }
     } else {
       for (var index in dd) {
         if (dd[index].id == id) {
           dd[index].xuanzhong = xiang
-          dd[index].iscollect = 0
+          //dd[index].iscollect = 0
         }
       }
     }
@@ -175,12 +192,62 @@ Page({
       if (d.data.status == 0) {
         if (utype == 0) {
           this.data.list[current].iscollect = 0
+          wx.showToast({ title: '取消收藏成功', icon: 'success', duration: 2000 })
         } else if (utype == 1) {
           this.data.list[current].iscollect = 1
+          wx.showToast({ title: '收藏成功', icon: 'success', duration: 2000 })
         }
         this.setData({ list })
       }
     })
+  },
+
+  //删除题目
+  delquestion: function(e){
+     let id = e.currentTarget.dataset.id
+     let current = e.currentTarget.dataset.current
+    // let uid = app.globalData.uid
+    // var params = {
+    //    "uid": uid,
+    //    "id":id
+    // }
+    var that = this
+    wx.showModal({
+      title: '确定删除此题？',
+      content: '',
+      success(res) {
+        if (res.confirm) {
+          that.delquestion_byid(id,current)
+        } else if (res.cancel) {
+          //console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  delquestion_byid: function (id,current) {
+    var that = this
+    let uid = app.globalData.uid
+    var params = {
+       "uid": uid,
+       "id": id
+    }
+    var list = that.data.list
+    var leng = list.length
+    app.tiku.cuotidel(params).then(d=>{
+      if(d.data.status==0){
+        list.splice(current,1)
+        console.log("删除成功")
+        that.setData({ list })
+        if(leng > 1 ){
+           if(list[current] == list[0]) {
+             that.setData({ currentTab :  1})
+           }else if(list[current] == list[leng -1]) {
+             that.setData({currentTab : current - 1})
+           }
+        }
+      }
+    })
+    
   },
 
   /**
@@ -194,15 +261,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.aData.show = true;
-    app.aData.answerquestions = this.data;
+    // app.aData.show = true;
+    // app.aData.answerquestions = this.data;
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    app.aData.show = false;
+    //app.aData.show = false;
   },
 
   /**

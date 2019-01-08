@@ -45,6 +45,8 @@ function uploadFile(tempFilePath, name, uid) {
   })
 }
 
+
+
 module.exports = {
   login,
   getUserInfo,

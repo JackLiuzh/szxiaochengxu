@@ -1,6 +1,7 @@
 const app = getApp()
+const filter = require('../../utils/filter');
 // pages/shuati/shuati.js
-Page({
+Page(filter.loginCheck({
 
   /**
    * 页面的初始数据
@@ -19,7 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
+
+     wx.showLoading({
+       title: '拼命加载中...',
+     })
      var params = {
         "uid": app.globalData.uid
      }
@@ -34,6 +38,8 @@ Page({
               ability_list: d.data.data.ability_list
             })
          }
+         
+         wx.hideLoading()
      })
   },
   listTap: function(e) {
@@ -84,6 +90,8 @@ Page({
         })
       }
 
+    }else {
+      this.onLoad()
     }
     
     
@@ -91,6 +99,10 @@ Page({
 
   //提交答案
   submintanswer: function (obj) {
+    var that =this
+    wx.showLoading({
+      title: '正在提交中...',
+    })
       var params = {
          "uid": obj.uid,
          "totaltime": obj.totaltime,
@@ -102,7 +114,12 @@ Page({
       }
       console.log(params)
       app.tiku.tijiao(params).then(d=>{
-          console.log(d)
+          //console.log(d)
+          if(d.data.status==0){
+             console.log("提交答案成功")
+             wx.hideLoading()
+             that.onLoad()
+          }
       })
   },
 
@@ -141,4 +158,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-})
+}))

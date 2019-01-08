@@ -29,13 +29,13 @@ Page(filter.loginCheck({
     app.sz.dakajiaru(params).then(d=>{
        if(d.data.status==0) {
            this.setData({ 
+             today_ifdaka: d.data.data.today_ifdaka,
              clock_info : d.data.data.clock_info,
              daka_usernum :d.data.data.daka_usernum,
              join_usernum : d.data.data.join_usernum,
              comment_list : d.data.data.comment_list,
              guan_list_info : d.data.data.guan_list_info,
              total_guan_count: d.data.data.total_guan_count,
-             today_ifdaka : d.data.data.today_ifdaka,
              guan_num: d.data.data.guan_num
            })
        }
@@ -78,7 +78,47 @@ Page(filter.loginCheck({
   },
   onReachBottom() {
     this.loadMore()
-  }
+  },
+  /**
+  * 生命周期函数--监听页面显示
+  */
+  onShow: function () {
+    wx.showLoading({
+      title: '拼命加载中...',
+    })
+    var uid = app.globalData.uid;
+    
+    var params = {
+      "uid": uid,
+      "clock_id": this.data.clock_id
+    }
+    app.sz.dakajiaru(params).then(d => {
+      if (d.data.status == 0) {
+        this.setData({
+          clock_info: d.data.data.clock_info,
+          daka_usernum: d.data.data.daka_usernum,
+          join_usernum: d.data.data.join_usernum,
+          comment_list: d.data.data.comment_list,
+          guan_list_info: d.data.data.guan_list_info,
+          total_guan_count: d.data.data.total_guan_count,
+          today_ifdaka: d.data.data.today_ifdaka,
+          guan_num: d.data.data.guan_num
+        })
+      }
+    });
+    wx.hideLoading();
+    
+  },
 
+  imgYu: function(event) {
+    var list = new Array()
+    var src = event.currentTarget.dataset.src
+    list[0] = src
+     wx.previewImage({
+       urls: list,
+       current: src
+     })
+
+  }
 
 }));

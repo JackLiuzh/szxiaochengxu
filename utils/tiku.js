@@ -40,4 +40,9 @@ function shoucangti(params) {
   return fetch.tikufetch(URI, "routineCollectQuestion", params)
 }
 
-module.exports = { shuati, getquestions, tijiao, shoucang, cuotilist, shoucanglist, shoucangti, cuotitimu }
+//删除错题集中的错题
+function cuotidel(params) {
+  return fetch.tikufetch(URI, "getwrongquestionsdel", params)
+}
+
+module.exports = { shuati, getquestions, tijiao, shoucang, cuotilist, shoucanglist, shoucangti, cuotitimu, cuotidel }

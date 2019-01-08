@@ -9,27 +9,66 @@ Page({
 
   },
   bindGetUserInfo: function(e) {
+    wx.showLoading({
+      title: '登录中...',
+    })
     var that =this;
     // app.wechat.setStorage('userInfo',e.detail.userInfo);
     // 获取用户信息
     if (e.detail.userInfo) {
+      console.log(e);
       app.wechat.setStorage('userInfo', e.detail.userInfo);
-      var uid = app.wechat.getStorage('uid');
+      var userInfo = e.detail.userInfo;
+      var encryptedData = e.detail.encryptedData;
+      var iv = e.detail.iv;
+      //var uid = app.wechat.getStorage('uid');
       wx.getSetting({
         success: res => {
           if (res.authSetting['scope.userInfo']) {
             app.wechat.setStorage('isauth', true);
+            app.wechat.login().then(d=>{
+               //console.log("zheshi"+d.code)
+                console.log(d)
+                var params = {
+                  "code": d.code,
+                  "encryptedData": encryptedData,
+                  "iv": iv,
+                  "userinfo": userInfo
+                }
+                app.sz.loginregister(params).then(d => {
+                    app.wechat.setStorage("uid",d.data.uid).then(s=>{
+                        wx.hideLoading()
+                        that.tiao()
+                    })
+                })
+
+            })
+            
           } else {
             app.wechat.setStorage('isauth', false);
           }
+          
         }
       })
+      
     } else {
        console.log("用户拒绝授权用户信息")
+       wx.hideLoading()
     }
-    wx.navigateBack({
-      delta: 1
-    })
+
+    // wx.getUserInfo({
+    //   success: function (res) {
+    //     var userInfo = res.userInfo
+    //     var nickName = userInfo.nickName
+    //     var avatarUrl = userInfo.avatarUrl
+    //     var gender = userInfo.gender //性别 0：未知、1：男、2：女
+    //     var province = userInfo.province
+    //     var city = userInfo.city
+    //     var country = userInfo.country
+    //     console.log(res)
+    //   }
+    // })
+    
   },
 
   /**
@@ -39,6 +78,12 @@ Page({
 
   },
 
+  tiao: function() {
+      wx.switchTab({ url: '../daka/daka' })
+    // wx.navigateBack({
+    //   delta: 1
+    // })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

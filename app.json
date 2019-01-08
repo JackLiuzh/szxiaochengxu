@@ -16,6 +16,7 @@
     "pages/daka_jiaru/daka_jiaru",
     "pages/tologin/tologin",
     "pages/commondati/commondati"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

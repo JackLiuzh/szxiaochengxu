@@ -41,6 +41,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '拼命加载中...',
+    })
     var that = this
     wx.getSystemInfo({
       success: function (res) {
@@ -59,8 +62,18 @@ Page({
     } 
     app.tiku.getquestions(params).then(d=>{
        if(d.data.data.length) {
+           for (let i = 0; i < d.data.data.length; i++) {
+             WxParse.wxParse('reply' + i, 'html', d.data.data[i].title, that)
+             WxParse.wxParse('replynote' + i, 'html', d.data.data[i].note, that)
+             if (i === d.data.data.length -1) {
+                WxParse.wxParseTemArray("replyTemArray", 'reply', d.data.data.length, that)
+                WxParse.wxParseTemArray("replyTemArrayNote", 'replynote', d.data.data.length, that)
+             }
+           }
            this.setData({list:d.data.data,tot: d.data.data.length})
+           wx.hideLoading()
        }
+       
     })
 
     // 记录开始时间点
@@ -70,12 +83,16 @@ Page({
        uptime : starttime
     })
 
+    wx.setNavigationBarTitle({
+      title: that.data.ability_title
+    })
+
    
   },
   //触发选项按钮
   choosed: function (e) {
 
-
+    var that =this
     var dd = this.data.list
     var xuanxiang = e.currentTarget.dataset.xuanxiang
     var answer = e.currentTarget.dataset.answer
@@ -88,14 +105,15 @@ Page({
       for (var index in dd) {
         if (dd[index].id == id){
           dd[index].xuanzhong = xiang
-          dd[index].iscollect=1
+          dd[index].iscorrect=1
+          that.setData({ currentTab: that.data.currentTab+1})
          }
       }
     }else {
       for (var index in dd) {
         if (dd[index].id == id) {
           dd[index].xuanzhong = xiang
-          dd[index].iscollect = 0
+          dd[index].iscorrect = 0
         }
       }
     }
@@ -152,8 +170,10 @@ Page({
         if(d.data.status==0) {
            if(utype==0){
              this.data.list[current].iscollect = 0
+             wx.showToast({ title: '取消收藏成功', icon: 'success', duration: 2000 })
            }else if(utype==1) {
              this.data.list[current].iscollect = 1
+             wx.showToast({title: '收藏成功', icon: 'success', duration: 2000})
            }
            this.setData({list})
         }

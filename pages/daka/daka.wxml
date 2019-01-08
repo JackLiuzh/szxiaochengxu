@@ -2,9 +2,9 @@
   <block  wx:for="{{ datalist }}" wx:key="key">
     <view data-state="{{ item.state }}" data-id="{{ item.id }}" bindtap="onSwitchnavto" class="box-item">
          <view class="item-left">
-             <image style="width:100rpx;height:100rpx;"  src="{{ item.picture }}" />
-             <view class="word-content">
-                  <text class="main-title">{{ item.name }}</text>
+             <image mode="aspectFit" style="width:100rpx;height:100rpx;"  src="{{ item.picture }}" />
+             <view style="width:80%;" class="word-content">
+                  <text style="display:-webkit-box;overflow:hidden;-webkit-line-clamp:1;-webkit-box-orient:vertical" class="main-title">{{ item.name }}</text>
                   <text class="sub-title" decode="{{true}}" space="{{true}}">{{ item.user_count }}人参加&nbsp;&nbsp;{{ item.daka_count }}次打卡</text>
              </view>
          </view>

@@ -31,7 +31,7 @@
               <view class="box-cell">
                  <image src="../../images/cuotiji@2x.png" mode='aspectFill' />
                  <view class="textbox">
-                    <text class="wo">错题级</text>
+                    <text class="wo">错题集</text>
                     <text class="nu">{{ wrong_total }}</text>
                  </view>
               </view>

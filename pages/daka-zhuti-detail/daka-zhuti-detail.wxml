@@ -4,7 +4,7 @@
           <text class="text-head">{{ list.title }}</text>
           <view class="text-sign">
                 <text class="sign-guan">第{{ guan_num }}关</text>
-                <text class="sign-yuan">{{ list.readnum }}阅读</text>
+                <text wx:if="{{ list.readnum }}" class="sign-yuan">{{ list.readnum }}阅读</text>
           </view>
           <view class="text-body">
              <template is="wxParse" data="{{ wxParseData:content.nodes }}" />
@@ -41,6 +41,7 @@
       <image src="{{imagePath}}" class='shengcheng'></image>
       <button class='baocun' bindtap='baocun'>保存相册，分享到朋友圈</button>
     </view>
+    <view bindtap="closeaction" class="closebutton" hidden="{{maskHidden == false}}">x</view>
     <view hidden="{{maskHidden == false}}" class="mask"></view> 
     <view class="canvas-box">
         <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>

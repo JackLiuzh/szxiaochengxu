@@ -30,12 +30,13 @@
 
             <view wx:for="{{ list }}" wx:key="key" class="item">
                 <view class="item-cc">
-                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="{{ userInfo.avatarUrl }}"/>
                     <view class="item-content">
-                        <text class="name">小心二</text>
-                        <text class="time">{{ item.created }}小时前 - 已坚持{{ item.total_day }}天</text>
+                        <text class="name">{{userInfo.nickName}}</text>
+                        <wxs src="../../utils/tools.wxs" module="tools" />
+                        <text class="time">{{ tools.getDateDiff(item.created) }} - 已坚持{{ item.total_day }}天</text>
                         <text class="words">{{ item.content }}</text>
-                        <image wx:if="{{ item.img_url  }}" style="width:190rpx;height:190rpx;background-color:green;" src="{{ item.img_url }}" />
+                        <image bindtap="imgYu"  data-src="{{ item.img_url }}" wx:if="{{ item.img_url  }}" style="width:190rpx;height:190rpx;background-color:green;" src="{{ item.img_url }}" />
                         <text class="sign">第{{ item.dakakeshi }}天：{{ item.list_title }}</text>
                     </view>
                 </view>

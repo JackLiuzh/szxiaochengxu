@@ -106,6 +106,7 @@ padding-left:58rpx;
 .box .body .bd-content .co-image {
     position: relative;
     height: 325rpx;
+    overflow: hidden;
 }
 .box .body .bd-content .co-image .im-words{
   position: absolute;
@@ -113,6 +114,8 @@ padding-left:58rpx;
   color: #fff;
   font-size:36rpx;
   padding:30rpx;
+  width:100%;
+  overflow: hidden;
  
 }
 .box .body .bd-content .co-image .im-words button{
@@ -122,11 +125,12 @@ padding-left:58rpx;
   background-color:#EA5959;
   color:#fff;
   line-height:64rpx;
-  position:relative;
-  left:-143rpx;
-  bottom:-146rpx;
+  position:absolute;
+  left:10rpx;
+  bottom:46rpx;
   padding:0;
   font-size:30rpx;
+
 
 }
 .box .body .bd-content .co-image image{
@@ -137,6 +141,15 @@ padding-left:58rpx;
    opacity: .9;
    /* z-index: -1; */
    
+}
+.box .body .bd-content .co-image .biaoshidui{
+  width:30rpx;
+  height:30rpx;
+  position:abosulte;
+  top:56rpx;
+  right:107rpx;
+  top:56rpx;
+  left:15px;
 }
 .box .footer{
   display: flex;
@@ -177,6 +190,7 @@ padding-left:58rpx;
   display: flex;
   flex-direction: column;
   margin-left:23rpx;
+  width:83%;
 }
 .box .footer .item-box .item .item-cc .item-content .name{
   font-size:34rpx;

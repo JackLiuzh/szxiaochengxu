@@ -49,7 +49,7 @@ Page({
   listTap(e) {
     let Index = e.currentTarget.dataset.parentindex,//获得点击的下标值
       datalist = this.data.datalist;
-    datalist[Index].show = !datalist[Index].show || false;//记录变换其打开、关闭的状态,true 代表已展开，false 未打开
+    datalist[Index].show = ! datalist[Index].show || false;//记录变换其打开、关闭的状态,true 代表已展开，false 未打开
     if(datalist[Index].show) {
         //执行， 让其他展开的变为收齐状态
       this.packUp(datalist, Index);
@@ -62,9 +62,6 @@ Page({
      for( let i = 0; i < data.length; i++ ) {
        if(index != i) {
           data[i].show = false;
-          for( let j = 0; j < data[i].item.length; j++) {
-             data[i].item[j].show = false;
-          }
        }
      }
   },
@@ -101,14 +98,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**

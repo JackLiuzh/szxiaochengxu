@@ -58,6 +58,16 @@ Page(filter.loginCheck({
       })
 
   },
+  imgYu: function (event) {
+    var list = new Array()
+    var src = event.currentTarget.dataset.src
+    list[0] = src
+    wx.previewImage({
+      urls: list,
+      current: src
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

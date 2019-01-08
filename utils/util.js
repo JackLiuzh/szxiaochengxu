@@ -41,13 +41,10 @@ function formatTime(number, format) {
    returnArr.push(formatNumber(date.getMinutes()));
    returnArr.push(formatNumber(date.getSeconds()));
   
-  for (var i in returnArr) {
-      if(formateArr[i] == 'M'){
-        format = format.replace(formateArr[i], yue[i]);
-      }
-      format = format.replace(formateArr[i], returnArr[i]);
-      
-  }
+   for (var i in returnArr) {
+       format = format.replace(formateArr[i], returnArr[i]);      
+   }
+  format = format.replace(returnArr[1], yue[returnArr[1]-1]);
   return format;
 }
 

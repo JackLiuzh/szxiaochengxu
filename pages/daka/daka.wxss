@@ -14,7 +14,9 @@
 .box .box-item .item-left{
    display: flex;
    flex-direction: row;
-   min-width:215px;
+   /* min-width:215px; */
+   max-width: 266px;
+   flex: 1;
 }
  .box .box-item .item-left .word-content{
    display: flex;

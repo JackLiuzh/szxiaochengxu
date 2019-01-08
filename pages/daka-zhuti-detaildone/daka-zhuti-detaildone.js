@@ -15,13 +15,19 @@ Page({
     user_record: '',
     user_total_days: '',
     user_record: [],
-    guan_num: ''
+    guan_num: '',
+    userInfo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.wechat.getStorage("userInfo").then(d=>{
+       this.setData({userInfo: d.data})
+    })
+
+
     var that = this;
     that.setData({ guan_num: options.guan_num })
     var params = {
@@ -33,7 +39,7 @@ Page({
         that.setData({
           list: d.data.list,
           user_record: d.data.user_record,
-          user_total_days: 1
+          user_total_days: d.data.user_total_days
         });
         //console.log(d.data.list.content)
         WxParse.wxParse('content', 'html', d.data.list.content, that, 5);

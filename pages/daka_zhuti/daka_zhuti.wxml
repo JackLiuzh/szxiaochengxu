@@ -1,8 +1,9 @@
 <view class="con-box">
-     <view wx:for="{{ list }}" wx:key="key" data-guan_num="{{ index+1 }}" data-id="{{ item.id }}"  data-deblocking="{{ item.deblocking }}" data-ifdaka="{{ item.ifdaka }}"  bindtap="isjump" class="box-item">
-        <image class="item-image" src="../../images/test.png" />
+     <view wx:for="{{ list }}" wx:key="key" data-guan_num="{{ index+1 }}" data-id="{{ item.id }}"  data-deblocking="{{ item.deblocking }}" data-ifdaka="{{ item.ifdaka }}" bindtap="isjump" class="box-item">
+        <image wx:if="{{ item.cover_url }}" class="item-image" src="{{ item.cover_url }}" />
+        <image wx:else class="item-image" src="../../images/test.png" />
         <view class="box-words">
-            <text class="words-title">{{ item.title }}</text>
+            <text style="overflow:hidden;word-break:break-all;text-overflow: ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;height:83rpx;" class="words-title">{{ item.title }}</text>
             <view class="words-text">
                  <text class="text-guan">第{{ index+1 }}关</text>
                  <view wx:if="{{ item.deblocking==0 }}" class="text-suo">

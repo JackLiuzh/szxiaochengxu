@@ -4,7 +4,7 @@
           <text class="text-head">{{ list.title  }}</text>
           <view class="text-sign">
                 <text class="sign-guan">第{{ guan_num }}关</text>
-                <text class="sign-yuan">256阅读</text>
+                <text wx:if="{{ item.readnum }}" class="sign-yuan">{{ item.readnum }}阅读</text>
           </view>
           <div class="text-body">
              <template is="wxParse" data="{{ wxParseData:content.nodes }}" /> 
@@ -16,12 +16,13 @@
 
             <view class="item">
                 <view class="item-cc">
-                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="../../images/test.png"/>
+                    <image style="width:80rpx;height:80rpx;border-radius:50%;"  src="{{userInfo.avatarUrl}}"/>
                     <view class="item-content">
-                        <text class="name">小心二</text>
-                        <text class="time">{{user_record.created}}小时前 - 已坚持{{ user_total_days }}天</text>
-                        <text class="words">{{ user.record.content }}</text>
-                        <image style="width:190rpx;height:190rpx;background-color:green;" src="" />
+                        <text class="name">{{userInfo.nickName}}</text>
+                        <wxs src="../../utils/tools.wxs" module="tools" />
+                        <text class="time">{{tools.getDateDiff(user_record.created)}} - 已坚持{{ user_total_days }}天</text>
+                        <text class="words">{{ user_record.content }}</text>
+                        <image wx:if="{{ user_record.img_url }}"  mode="widthFix" style="width:190rpx;" src="{{user_record.img_url}}" />
                     </view>
                 </view>
             </view>

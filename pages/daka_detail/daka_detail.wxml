@@ -1,3 +1,4 @@
+<import src="../../components/wxParse/wxParse.wxml"/>
 <view class="box">
     <view class="header">
         <text class="header-title">{{ info.name }}</text>
@@ -12,7 +13,9 @@
     </view>
     <view class="body">
         <text>打卡介绍</text>
-        <image style="width:100%;" src="{{ info.picture }}" />
+        <view style="margin-top:30rpx;">
+            <template is="wxParse" data="{{ wxParseData:content.nodes }}" />
+        </view>
     </view>
     <view class="footer">
         <text class="footer-title">打卡日记</text>
@@ -26,7 +29,7 @@
                         <text class="name">{{  item.user_name }}</text>
                         <text class="time">{{ tools.getDateDiff(item.created) }} - 已坚持{{ item.user_total_keshi }}天</text>
                         <text class="words">{{ item.content }}</text>
-                        <image mode="widthFix" style="width:190rpx;" src="{{item.img_url}}" />
+                        <image wx:if="{{ item.img_url }}"  mode="widthFix" style="width:190rpx;" src="{{item.img_url}}" />
                         <text class="sign">第{{ item.dakakeshi }}天：{{ item.clock_list_title }}</text>
                     </view>
                 </view>

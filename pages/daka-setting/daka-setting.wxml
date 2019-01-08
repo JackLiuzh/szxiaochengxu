@@ -1,19 +1,36 @@
-<view class="con-box">
-    <view class="switch-box">
-        <view class="cell">
-            <view class="cell-left">微信提醒开启</view> 
-            <view class="cell-right">
-                <switch checked />
-            </view> 
-        </view>
-        <view class="cell">
-            <view class="cell-left">每日提醒时间</view> 
-            <view class="cell-right-text">
-                <text decode="true">23:00&nbsp;&nbsp;></text>
-            </view>
-        </view>
-    </view>
-    <view class="but-box">
-        <button type="warn">删除并退出打卡</button>     
-    </view>
-</view>
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="con-box">
+      <view class="switch-box">
+          <view class="cell">
+              <view class="cell-left">是否退出打卡</view> 
+              <view wx:if="{{setting=='1'}}" class="cell-right">
+                  <switch checked name="istuichu" bindchange="switch1Change" />
+              </view>
+              <view wx:else class="cell-right">
+                  <switch  name="istuichu" bindchange="switch1Change" />
+              </view> 
+          </view>
+          <view class="cell">
+              <view class="cell-left">微信提醒开启</view> 
+              <view wx:if="{{ pushmsg_switch }}" class="cell-right">
+                  <switch checked name="istixing" bindchange="switch2Change" />
+              </view>
+              <view wx:else class="cell-right">
+                  <switch name="istixing" bindchange="switch2Change" />
+              </view>  
+          </view>
+          <view style="display:none;" class="cell">
+              <view class="cell-left">每日提醒时间</view> 
+              <view class="cell-right-text">
+                  <text decode="true">23:00&nbsp;&nbsp;></text>
+              </view>
+          </view>
+      </view>
+      <view style="display:none;" class="but-box">
+          <button type="warn">删除并退出打卡</button>     
+      </view>
+      <view class="but-box">
+          <button form-type='submit' type="warn">提交</button>     
+      </view>
+  </view>
+</form>

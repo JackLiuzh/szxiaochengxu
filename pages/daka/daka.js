@@ -1,6 +1,7 @@
 // pages/daka/daka.js
 const app = getApp()
-Page({
+const filter = require('../../utils/filter');
+Page(filter.loginCheck({
 
   /**
    * 页面的初始数据
@@ -8,7 +9,7 @@ Page({
   data: {
      hasMore: true,
      page: 1,
-     perpage:2,
+     perpage:20,
      datalist:[] 
   },
   
@@ -16,10 +17,11 @@ Page({
     if(!this.data.hasMore) return;
 
     wx.showLoading({ title: "拼命加载中..."});
-    return app.wechat.getStorage("uid").then(d => {
-            if (d.data) {
+
+    return app.wechat.getStorage("uid").then(dd => {
+            if (dd.data) {
               var params = {
-                "uid": d.data,
+                "uid": dd.data,
                 "page": this.data.page++,
                 "perpage": this.data.perpage
               }
@@ -68,8 +70,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    app.wechat.getStorage("uid").then(d=>{
+      var uid = d.data;
+      app.globalData.uid = uid;
+      
+    })
     this.loadMore()
-   
     
     //app.sz.dakazhutilist(params);
     
@@ -87,7 +94,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
+    return app.wechat.getStorage("uid").then(dd => {
+      var toperpage = this.data.perpage*(this.data.page - 1)
+      if (dd.data) {
+        var params = {
+          "uid": dd.data,
+          "page": 1,
+          "perpage": toperpage
+        }
+        app.sz.dakazhutilist(params).then(d => {
+          if (d.data.data.length) {
+            this.setData({
+              datalist: d.data.data
+            })
+          } else {
+            this.setData({
+              hasMore: false,
+              title: '没有更多了'
+            })
+          }
+        })
+      } else {
+        console.log("未获得用户uid")
+      }
+      wx.hideLoading();
+    });
   },
 
   /**
@@ -124,4 +156,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-})
+}))

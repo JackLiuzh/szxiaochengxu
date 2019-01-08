@@ -3,7 +3,7 @@ var WxParse = require('../../components/wxParse/wxParse.js');
 const util = require('../../utils/util');
 const  app = getApp();
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
@@ -22,27 +22,29 @@ Page({
       maskHidden: false,
       nickName: '',
       avatarUrl:'',
-      imagePath:''
+      imagePath:'',
+      haibaoinfo: ''
   },
 
   //点击选取选取或拍照按钮
   chooseImage() {
      const that = this
      wx.chooseImage({
-         sourceType: this.data.sourceTypeIndex,
-         sizeType: this.data.sizeTypeIndex,
-         success(res) {
+         count: 1,
+         sourceType: ['album', 'camera'],
+         sizeType: 1,
+         success: function(res) {
            that.setData({
              imageList : res.tempFilePaths
            })
-          // console.log(res)
+           console.log(res)
            var uid = app.globalData.uid;
            app.wechat.uploadFile(res.tempFilePaths[0], 'file', uid).then(d=>{
              var obj = JSON.parse(d.data)
              that.setData({
                urlimg: obj.url
              });
-
+             console.log("上传成功")
            })
          }
 
@@ -53,8 +55,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var that =this;
-    that.setData({guan_num : options.guan_num})
+    that.setData({ guan_num: options.guan_num})
     var params = {
       "uid": app.globalData.uid,
       "clock_list_id": options.clock_list_id
@@ -80,6 +83,26 @@ Page({
         })
       }
     })
+
+    //获得海报信息
+    app.sz.gethaibaoinfo().then(d=>{
+       console.log("获取海报接口："+ d)
+       if(d.data.status==0){
+          that.setData({haibaoinfo: d.data.data})
+         that.setData({ ['haibaoinfo.guan_num']: options.guan_num, ['haibaoinfo.total_guan_num']: options.total_guan_num, ['haibaoinfo.zhutiname']: that.data.list.title})
+       }else {
+          console.log("海报接口有错误") 
+       }
+    })
+
+    
+
+    
+  },
+
+  //关闭海报
+  closeaction: function() {
+      this.data.maskHidden=false
   },
   
   // 生成海报方法
@@ -175,7 +198,9 @@ Page({
     context.fillText("环形使者", 185, 350, 100);
     context.stroke();
 
-    var timeunix = 1540967068;
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000
+    var timeunix = timestamp;
     var timestr = util.formatTime(timeunix, 'Y-M-D');
     var timearr = timestr.split('-');
 
@@ -204,16 +229,16 @@ Page({
     context.setFontSize(20);
     context.setFillStyle('#333');
     context.setTextAlign('left');
-    context.fillText("【国考】5天言语挑战营", 35, 600);
+    context.fillText(that.data.list.title.substr(0,5), 35, 600);
     context.stroke();
 
     context.setFontSize(18);
     context.setFillStyle('#333');
     context.setTextAlign('left');
-    context.fillText("第2/5课打卡", 35, 630);
+    context.fillText("第"+that.data.haibaoinfo.guan_num+"/"+that.data.haibaoinfo.total_guan_num+"课打卡", 35, 630);
     context.stroke();
 
-    context.drawImage("../../images/test.png", 260, 530, 100, 100); // 在刚刚裁剪的园上画图
+    context.drawImage("../../images/xiao_icon.jpg", 260, 530, 100, 100); // 在刚刚裁剪的园上画图
     context.draw();
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
     setTimeout(function () {
@@ -269,7 +294,7 @@ Page({
     wx.showToast({
       title: '生成中...',
       icon: 'loading',
-      duration: 2000
+      duration: 3000
     });
     setTimeout(function () {
       wx.hideToast()
@@ -277,7 +302,7 @@ Page({
       that.setData({
         maskHidden: true
       });
-    }, 2000)
+    }, 3000)
   },
 
 

@@ -11,8 +11,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.9",
-	"appid": "wxcb628e95d2e19b35",
+	"libVersion": "2.4.1",
+	"appid": "wx19fa326ac63f8925",
 	"projectname": "szwx",
 	"debugOptions": {
 		"hidedInDevtools": []

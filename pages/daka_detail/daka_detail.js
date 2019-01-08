@@ -45,7 +45,7 @@
 
 // pages/user/user.js
 
-
+var WxParse = require('../../components/wxParse/wxParse.js');
 const app = getApp()
 const filter = require('../../utils/filter');
 Page(filter.loginCheck({
@@ -56,11 +56,12 @@ Page(filter.loginCheck({
      daka_usernum:'',
      join_usernum:'',
      comment_list:[],
-     page:1,
+     page:2,
      perpage:20,
      hasMore: true
   },
   onLoad: function (options) {
+    var that = this
     wx.showLoading({
       title: '拼命加载中...',
     });
@@ -69,7 +70,7 @@ Page(filter.loginCheck({
     // var uid = wx.getStorage('uid');
     // console.log("这是uid" + uid);
     var params = {
-      "uid": 48,
+      "uid": uid,
       "clock_id":options.id
     }
     app.sz.dakadetail(params).then( d=> {
@@ -83,6 +84,7 @@ Page(filter.loginCheck({
              join_usernum: redata.join_usernum,
              comment_list: redata.comment_list
           })
+         WxParse.wxParse('content', 'html', redata.info.body, that, 5);
        }else{
          console.log("接口错误")
        }
@@ -94,15 +96,13 @@ Page(filter.loginCheck({
   },
 
   loadMore () {
-    if(!this.data.hasMore) return
-
-
+    if(!this.data.hasMore) return;
     wx.showLoading({
        title: '拼命加载中...',
     });
     var params = {
       "clock_id": this.data.clock_id,
-      "page": this.data.page,
+      "page": this.data.page++,
       "perpage": this.data.perpage
     }
     return app.sz.dakadetailemore(params).then(d=> {
@@ -114,16 +114,21 @@ Page(filter.loginCheck({
       wx.hideLoading()
     })
   },
-  lijiaru () {
+  lijiaru:function () {
+    var that = this
+    var clock_id = that.data.clock_id
     var params = {
        "uid": app.globalData.uid,
-       "clock_id": this.data.clock_id
+       "clock_id": clock_id
     }
     return app.sz.dakadetailjiarubut(params).then( d=> {
       if(d.data.status==0){
          wx.showToast({ title:'加入成功', icon: 'success', duration:2000 });
+        //  wx.navigateTo({
+        //     url: '../daka_zhuti/daka_zhuti?clock_id=' + clock_id
+        //  })
          wx.navigateTo({
-            url: '../daka_zhuti/daka_zhuti'
+           url: '../daka_jiaru/daka_jiaru?id=' + clock_id,
          })
       }
     })

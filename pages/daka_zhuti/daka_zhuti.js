@@ -44,17 +44,18 @@ Page({
 
   isjump (e) {
     console.log(e)
+    var total_guan_num = this.data.list.length;
     var clock_list_id = e.currentTarget.dataset.id;
     var guan_num = e.currentTarget.dataset.guan_num;
     // var uid = app.globalData.uid;
     if (e.currentTarget.dataset.deblocking){
       if (e.currentTarget.dataset.ifdaka==1){
         wx.navigateTo({
-          url: '../daka-zhuti-detaildone/daka-zhuti-detaildone?clock_list_id=' + clock_list_id + '&guan_num=' + guan_num,
+          url: '../daka-zhuti-detaildone/daka-zhuti-detaildone?clock_list_id=' + clock_list_id + '&guan_num=' + guan_num ,
         })
       }else {
         wx.navigateTo({
-          url: '../daka-zhuti-detail/daka-zhuti-detail?clock_list_id=' + clock_list_id + '&guan_num=' + guan_num,
+          url: '../daka-zhuti-detail/daka-zhuti-detail?clock_list_id=' + clock_list_id + '&guan_num=' + guan_num + '&total_guan_num=' + total_guan_num,
         })
       }
      }else{
@@ -76,21 +77,39 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({ list: [] })
+    wx.showLoading({
+      title: '拼命加载中',
+    })
+    var totperpage = (this.data.page - 1)*this.data.perpage
+    var params = {
+      "clock_id": this.data.clock_id,
+      "uid": app.globalData.uid,
+      "page": 1,
+      "perpage": totperpage
+    }
+    return app.sz.dakazhutizilist(params).then(d => {
+      if (d.data.list.length) {
+        this.setData({ list: d.data.list })
+      } else {
+        this.setData({ hasMore: false })
+      }
+      wx.hideLoading();
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+      
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.setData({ list: [] })
   },
 
   /**

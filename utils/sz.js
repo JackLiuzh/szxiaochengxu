@@ -1,8 +1,9 @@
 const URI = 'http://cs.szgk.cn/api.php'
+//const URI = 'http://sz.com/api.php'
 const fetch = require('./fetch')
 
-function loginregister(path,params) {
-   return fetch.szfetch(URI,path,params)
+function loginregister(params) {
+  return fetch.szfetch(URI,"xcxlogin",params)
 }
 
 //获得打卡主题列表daka 页面
@@ -65,4 +66,18 @@ function my(params) {
   return fetch.szfetch(URI,"selectuserclockrecord",params)
 }
 
-module.exports = { loginregister, dakazhutilist, dakazhuti, dakadetail, dakadetailemore, dakadetailjiarubut, dakajiaru, dakazhutizilist, dakazhutidetail, dakazhutidetail_submit, myfankui,my}
+// daka-zhuti-detail 获得海报信息
+function gethaibaoinfo() {
+  return fetch.szfetch(URI, "clockplacardfind")
+}
+
+// daka-setting 设置打卡提醒
+function dakasetting(params) {
+  return fetch.szfetch(URI, "clockset", params)
+}
+// 获取打卡设置参数
+function clocksetinfo(params) {
+  return fetch.szfetch(URI,"clocksetinfo", params)
+}
+
+module.exports = { loginregister, dakazhutilist, dakazhuti, dakadetail, dakadetailemore, dakadetailjiarubut, dakajiaru, dakazhutizilist, dakazhutidetail, dakazhutidetail_submit, myfankui, my, gethaibaoinfo, dakasetting, clocksetinfo}
