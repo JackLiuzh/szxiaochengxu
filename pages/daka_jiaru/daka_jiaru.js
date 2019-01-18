@@ -17,30 +17,30 @@ Page(filter.loginCheck({
      hasMore: false
   },
   onLoad: function (options) {
-    wx.showLoading({
-      title: '拼命加载中...',
-    })  
+    // wx.showLoading({
+    //   title: '拼命加载中...',
+    // })  
     var uid = app.globalData.uid;
     this.setData({clock_id: options.id});
-    var params = {
-      "uid":uid,
-      "clock_id":options.id
-    }
-    app.sz.dakajiaru(params).then(d=>{
-       if(d.data.status==0) {
-           this.setData({ 
-             today_ifdaka: d.data.data.today_ifdaka,
-             clock_info : d.data.data.clock_info,
-             daka_usernum :d.data.data.daka_usernum,
-             join_usernum : d.data.data.join_usernum,
-             comment_list : d.data.data.comment_list,
-             guan_list_info : d.data.data.guan_list_info,
-             total_guan_count: d.data.data.total_guan_count,
-             guan_num: d.data.data.guan_num
-           })
-       }
-    });
-    wx.hideLoading();
+    // var params = {
+    //   "uid":uid,
+    //   "clock_id":options.id
+    // }
+    // app.sz.dakajiaru(params).then(d=>{
+    //    if(d.data.status==0) {
+    //        this.setData({ 
+    //          today_ifdaka: d.data.data.today_ifdaka,
+    //          clock_info : d.data.data.clock_info,
+    //          daka_usernum :d.data.data.daka_usernum,
+    //          join_usernum : d.data.data.join_usernum,
+    //          comment_list : d.data.data.comment_list,
+    //          guan_list_info : d.data.data.guan_list_info,
+    //          total_guan_count: d.data.data.total_guan_count,
+    //          guan_num: d.data.data.guan_num
+    //        })
+    //    }
+    // });
+    // wx.hideLoading();
 
   },
   // 获取更多打卡日记

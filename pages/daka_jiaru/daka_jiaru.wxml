@@ -11,9 +11,9 @@
             </view>
         </view>
     </view>
-    <view class="body">
+    <view wx:if="{{clock_id>0}}" class="body">
       
-        <view class="bd-content">
+        <view wx:if="{{clock_id>0}}" class="bd-content">
             <view data-clock_id="{{ clock_id }}" bindtap="goallzhuti" class="co-title">
                  <text class="title-1">今日关卡 - 第{{  guan_num }}关</text>
                  <text decode="true">全部主题({{ total_guan_count }})&nbsp;></text>
@@ -25,7 +25,7 @@
                      <text style="position:relative;top:46rpx;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:80%;">{{ guan_list_info.title  }}</text>
                      <block wx:if="{{ today_ifdaka==1 }}">
                         <view style="position:relative;height:150rpx;bottom:-105rpx;">
-                                <button style="background:white;color:#52CC87;padding-left:20rpx;">已打卡</button>
+                                <button  style="background:white;color:#52CC87;padding-left:20rpx;">已打卡</button>
                                 <image class="biaoshidui"  src="../../images/yidaka.png"/>
                         </view>
                      </block>

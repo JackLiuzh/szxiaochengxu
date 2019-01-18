@@ -123,9 +123,9 @@ page{
 }
 .cuowuclass {
    background:#FF7B77;
-   color:#FFFFFF;
+   color:#FFFFFF !important;
    border:none !important;
- 
+   
 }
 .correctclass {
   background:#52CC87;

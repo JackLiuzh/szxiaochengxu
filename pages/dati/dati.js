@@ -34,7 +34,8 @@ Page({
      tot:'',//试题总数
      uid: '',
      totaltime:'',
-     ability_title:''
+     ability_title:'',
+     idarray:[]
   },
   
   /**
@@ -70,7 +71,7 @@ Page({
                 WxParse.wxParseTemArray("replyTemArrayNote", 'replynote', d.data.data.length, that)
              }
            }
-           this.setData({list:d.data.data,tot: d.data.data.length})
+           this.setData({list:d.data.data,tot: d.data.total})
            wx.hideLoading()
        }
        
@@ -147,10 +148,74 @@ Page({
     
   },
 
+  
+ 
   swiperchange: function (e) {
+    
+    var that = this;
     var current = e.detail.current
-    this.setData({ currentTab: current})
-     
+
+    that.data.idarray.push(that.data.list[current].id);
+    
+    
+    that.setData({ currentTab: current})
+    console.log(current)
+    var listlen = that.data.list.length;
+    if((listlen-1) == (current)){
+      wx.showLoading({
+        title: '拼命加载中...',
+      })
+
+      var set1 = Array.from(new Set(that.data.idarray));
+      that.data.idarray.concat(set1);
+
+      var questionid_str = that.data.idarray.join(",")
+      console.log("qu"+questionid_str)
+      
+      
+      // var objDeepCopy = function (source) {
+      //   var sourceCopy = source instanceof Array ? [] : {};
+      //   for (var item in source) {
+      //     sourceCopy[item] = typeof source[item] === 'object' ? objDeepCopy(source[item]) : source[item];
+      //   }
+      //   return sourceCopy;
+      // }
+      
+      // var objCopy = objDeepCopy(this.data.list)
+      // var neworry = this.data.list.concat(objCopy[0])
+      // console.log(neworry)
+      // this.setData({list: neworry})
+
+      var params = {
+        "uid": app.globalData.uid,
+        "ability_secondId": that.data.ability_secondId,
+        "questionid_str": questionid_str
+      } 
+      app.tiku.getquestions(params).then(d=>{
+        console.log(d.data);
+        //  console.log(d.data.data);
+        var newarray = that.data.list.concat(d.data.data)
+        //  this.setData({ list: newarray})
+
+        if (newarray.length) {
+          for (let i = 0; i < newarray.length; i++) {
+            WxParse.wxParse('reply' + i, 'html', newarray[i].title, that)
+            WxParse.wxParse('replynote' + i, 'html', newarray[i].note, that)
+            if (i === newarray.length - 1) {
+              WxParse.wxParseTemArray("replyTemArray", 'reply', newarray.length, that)
+              WxParse.wxParseTemArray("replyTemArrayNote", 'replynote', newarray.length, that)
+            }
+          }
+          that.setData({ list: newarray })
+          wx.hideLoading()
+        }
+
+
+      })
+      
+
+    }
+    
   },
   
   // 取消

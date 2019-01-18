@@ -18,10 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      //this.setData({list: []})
       this.setData({clock_id : options.clock_id})
       this.loadMore()
   },
   loadMore () {
+        //this.setData({ list: [] })
         if(!this.data.hasMore) return
         wx.showLoading({
           title: '拼命加载中',
@@ -70,32 +72,33 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({ list: [] })
-    wx.showLoading({
-      title: '拼命加载中',
-    })
-    var totperpage = (this.data.page - 1)*this.data.perpage
-    var params = {
-      "clock_id": this.data.clock_id,
-      "uid": app.globalData.uid,
-      "page": 1,
-      "perpage": totperpage
-    }
-    return app.sz.dakazhutizilist(params).then(d => {
-      if (d.data.list.length) {
-        this.setData({ list: d.data.list })
-      } else {
-        this.setData({ hasMore: false })
-      }
-      wx.hideLoading();
-    })
+     this.loadMore()
+    // this.setData({ list: [] })
+    // wx.showLoading({
+    //   title: '拼命加载中',
+    // })
+    // var totperpage = (this.data.page - 1)*this.data.perpage
+    // var params = {
+    //   "clock_id": this.data.clock_id,
+    //   "uid": app.globalData.uid,
+    //   "page": 1,
+    //   "perpage": totperpage
+    // }
+    // return app.sz.dakazhutizilist(params).then(d => {
+    //   if (d.data.list.length) {
+    //     this.setData({ list: d.data.list })
+    //   } else {
+    //     this.setData({ hasMore: false })
+    //   }
+    //   wx.hideLoading();
+    // })
   },
 
   /**
@@ -109,7 +112,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.setData({ list: [] })
+    //this.setData({ list: [] })
   },
 
   /**

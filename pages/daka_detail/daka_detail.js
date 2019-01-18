@@ -136,6 +136,16 @@ Page(filter.loginCheck({
 
   onReachBottom () {
      this.loadMore()
-  }
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    //  var options = {
+    //     "id": this.data.clock_id
+    //   }
+    //   console.log("zheshi"+options.id);
+    //   this.onLoad(options);
+  },
   
 }));

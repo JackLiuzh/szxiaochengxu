@@ -1,4 +1,4 @@
-const URI = 'http://ti.szgk.cn/index.php/szgk/index'
+const URI = 'http://tiku.szgk.cn/index.php/szgk/index'
 const fetch = require('./fetch')
 
 

@@ -196,19 +196,21 @@ button[class="zfbtn m_l"]::after {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 999999999;
 }
 .closebutton{
     position:fixed;
-    top:15rpx;
-    right:13px;
-    font-size:38px;
+    top:22rpx;
+    right:20px;
     color:#FFFFFF;
     z-index:9999999999;
-    width:50rpx;
-    height:50rpx;
+    width:60rpx;
+    height:60rpx;
     line-height:50rpx;
     text-align:center;
+    background-color:#444444;
+    border-radius:50%;
+
 }
 .shengcheng{
   width: 80%;

@@ -8,7 +8,7 @@ function formatDate (source, format) {
     'H+': source.getHours(), // 小时
     'm+': source.getMinutes(), // 分
     's+': source.getSeconds(), // 秒
-    'q+': Math.floor((source.getMonth() + 3) / 3), // 季度
+    'q+': Math.floor((source.getMonth() + 3) / 3), 
     'f+': source.getMilliseconds() // 毫秒
   }
   if (/(y+)/.test(format)) {
@@ -42,9 +42,12 @@ function formatTime(number, format) {
    returnArr.push(formatNumber(date.getSeconds()));
   
    for (var i in returnArr) {
-       format = format.replace(formateArr[i], returnArr[i]);      
+      if(i == 1){
+        format = format.replace(formateArr[i], yue[returnArr[1]-1])
+      }else {
+        format = format.replace(formateArr[i],returnArr[i])
+      }
    }
-  format = format.replace(returnArr[1], yue[returnArr[1]-1]);
   return format;
 }
 

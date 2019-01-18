@@ -10,7 +10,7 @@
                              <view class="type-nu">
                                  <text class=".nu-red">{{ index+1 }}</text>
                                  <text >/</text>
-                                 <text>{{ list.length }}</text>
+                                 <text>{{ tot }}</text>
                              </view>
                              <view class="type-qname">
                                   <text>单选题</text>
