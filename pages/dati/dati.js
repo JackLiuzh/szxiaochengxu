@@ -154,14 +154,14 @@ Page({
     
     var that = this;
     var current = e.detail.current
-
+    that.data.idarray.push(that.data.list[0].id)
     that.data.idarray.push(that.data.list[current].id);
     
     
     that.setData({ currentTab: current})
     console.log(current)
     var listlen = that.data.list.length;
-    if((listlen-1) == (current)){
+    if((listlen-1) == (current) && that.data.tot!=listlen){
       wx.showLoading({
         title: '拼命加载中...',
       })

@@ -72,46 +72,52 @@ Page(filter.loginCheck({
    */
   onShow: function (options) {
     let answerquestions = app.aData.answerquestions
-
-    var answerlist = app.aData.answerquestions.answerlist
-    var zhengquelv = '0%'
-    var datishu = 0
-    var cuotishu = 0
     
-    if(answerlist.length > 0){
-       for(var i=0;i< answerlist.length;i++ ) {
-          if(!answerlist[i].iswrong){
-             cuotishu ++;
-             datishu = answerlist.length
-             zhengquelv = ((datishu - cuotishu)/datishu).toFixed(2)*100
+    var answerlist = app.aData.answerquestions.answerlist
+
+    if(answerlist && answerlist.length){
+        
+
+      var zhengquelv = '0%'
+      var datishu = 0
+      var cuotishu = 0
+
+      if (answerlist.length > 0) {
+        for (var i = 0; i < answerlist.length; i++) {
+          if (!answerlist[i].iswrong) {
+            cuotishu++;
+            datishu = answerlist.length
+            zhengquelv = (((datishu - cuotishu) / datishu).toFixed(2)) * 100
           }
 
-       }
-    }
-    if (answerquestions && answerquestions.answerlist.length) {
-      let self = this;
-      let aShow = app.aData.show;
-      if (aShow) {
-        wx.showModal({
-          title: '本次答题情况',
-          showCancel:false,
-          confirmText:'知道了',
-          content: '正确率:' + zhengquelv + '% 答题数:' + datishu + ', 错题数：' + cuotishu,
-          success: function (res) {
-            app.aData.show = false;
-            if (res.confirm) {
-              self.submintanswer(answerquestions)
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
+        }
       }
+      if (answerquestions && answerquestions.answerlist.length) {
+        let self = this;
+        let aShow = app.aData.show;
+        if (aShow) {
+          wx.showModal({
+            title: '本次答题情况',
+            showCancel: false,
+            confirmText: '知道了',
+            content: '正确率:' + zhengquelv + '% 答题数:' + datishu + ', 错题数:' + cuotishu,
+            success: function (res) {
+              app.aData.show = false;
+              if (res.confirm) {
+                self.submintanswer(answerquestions)
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
 
-    }else {
-      this.onLoad()
+      } else {
+        this.onLoad()
+      }
     }
+    
     
     
   },

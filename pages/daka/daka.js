@@ -1,6 +1,7 @@
 // pages/daka/daka.js
 const app = getApp()
 const filter = require('../../utils/filter');
+
 Page(filter.loginCheck({
 
   /**
@@ -10,7 +11,8 @@ Page(filter.loginCheck({
      hasMore: true,
      page: 1,
      perpage:20,
-     datalist:[] 
+     datalist:[],
+     isClose:true
   },
   
   loadMore() {
@@ -77,8 +79,8 @@ Page(filter.loginCheck({
       app.globalData.uid = uid;
       
     })
-    this.loadMore()
-    
+     this.loadMore()
+    this.setData({datalist:[]})
     //app.sz.dakazhutilist(params);
     
     
@@ -96,33 +98,45 @@ Page(filter.loginCheck({
    */
   onShow: function () {
    
-      //this.loadMore()
-      //this.onLoad();
-      return app.wechat.getStorage("uid").then(dd => {
-        var toperpage = this.data.perpage * (this.data.page - 1)
-        if (dd.data) {
-          var params = {
-            "uid": dd.data,
-            "page": 1,
-            "perpage": toperpage
-          }
-          app.sz.dakazhutilist(params).then(d => {
-            if (d.data.data.length) {
-              this.setData({
-                datalist: d.data.data
-              })
-            } else {
-              this.setData({
-                hasMore: false,
-                title: '没有更多了'
-              })
+      // this.loadMore()
+      // this.onLoad();
+      if(!this.data.isClose){
+        this.setData({ datalist: [] })
+        return app.wechat.getStorage("uid").then(dd => {
+          var toperpage = this.data.perpage * (this.data.page - 1)
+          if (dd.data) {
+            var params = {
+              "uid": dd.data,
+              "page": 1,
+              "perpage": toperpage
             }
-          })
-        } else {
-          console.log("未获得用户uid")
-        }
-        wx.hideLoading();
-      });
+            app.sz.dakazhutilist(params).then(d => {
+              if (d.data.data.length) {
+                this.setData({
+                  datalist: d.data.data
+                })
+              } else {
+                this.setData({
+                  hasMore: false,
+                  title: '没有更多了'
+                })
+              }
+            })
+          } else {
+            console.log("未获得用户uid")
+          }
+          wx.hideLoading();
+        });
+      }
+     
+
+    // this.setData({ datalist: [] })
+    // app.wechat.getStorage("uid").then(d => {
+    //   var uid = d.data;
+    //   app.globalData.uid = uid;
+
+    // })
+    // this.loadMore()
     
     
     
@@ -132,7 +146,8 @@ Page(filter.loginCheck({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    //this.setData({ datalist: [] })
+    this.setData({ datalist: [] })
+    this.setData({isClose:false})
   },
 
   /**

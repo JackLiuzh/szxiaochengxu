@@ -109,6 +109,17 @@ Page(filter.loginCheck({
     wx.hideLoading();
     
   },
+  onHide: function(){
+      
+  },
+  onUnload:function(){
+    var isbackwhere = this.data.today_ifdaka
+    if (isbackwhere) {
+      wx.switchTab({
+        url: '../daka/daka',
+      })
+    }
+  },
 
   imgYu: function(event) {
     var list = new Array()

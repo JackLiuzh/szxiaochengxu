@@ -3,6 +3,9 @@ var WxParse = require('../../components/wxParse/wxParse.js');
 const util = require('../../utils/util');
 const  app = getApp();
 
+
+
+
 Page({
  
   /**
@@ -25,7 +28,10 @@ Page({
       avatarUrl:'',
       imagePath:'',
       haibaoinfo: '',
-      touxiang:''
+      touxiang:'',
+      width :'',
+      height:'',
+      textareaishow:true
   },
   //点击选取选取或拍照按钮
   chooseImage() {
@@ -57,6 +63,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+
+
     console.log(options)
     var that =this;
     that.setData({ guan_num: options.guan_num})
@@ -126,22 +135,23 @@ Page({
     var that = this;
     var context = wx.createCanvasContext('mycanvas');
     context.setFillStyle("white")
-    context.fillRect(0, 0, 375, 667)
+    context.fillRect(0, 0, (that.data.width) * (that.data.width / 375), (that.data.height+64) * (that.data.height /603))
     var path = "../../images/photo.png";
     //将模板图片绘制到canvas,在开发工具中drawImage()函数有问题，不显示图片
     //不知道是什么原因，手机环境能正常显示
-    context.drawImage(path, 0, 0, 375, 500);
+    context.drawImage(path, 0, 0, 375 * (that.data.width / 375), 500 * (that.data.height/603));
     //绘制头像
 
     context.save();
     context.beginPath();
-    context.arc(66, 500, 46, 0, 2 * Math.PI); //画出圆
+    context.arc(66, 500 * (that.data.height / 603), 46, 0, 2 * Math.PI); 
+    //画出圆
     context.setStrokeStyle('white');
     context.stroke();
     context.clip();
 
     var path1 = that.data.touxiang;
-    context.drawImage(path1, 20, 454, 92, 92);
+    context.drawImage(path1, 20, 454 * (that.data.height / 603),  100, 110 );
     //context.drawImage('', 20, 454, 92, 92);
     context.restore();
     // console.log(path1, "path1")
@@ -159,7 +169,7 @@ Page({
     context.setFontSize(24);
     context.setFillStyle('#333333');
     context.setTextAlign('center');
-    context.fillText(name, 66, 570);
+    context.fillText(name, 66, 570 * (that.data.height / 603));
     context.stroke();
 
     context.beginPath();
@@ -200,19 +210,19 @@ Page({
       row = rowCut;
     }
     for (var b = 0; b < row.length; b++) {
-      context.fillText(row[b], 185, 240 + b * 30, 300);
+      context.fillText(row[b], 185, (240 + b * 30) * (that.data.height / 603), 300 );
     }
     context.stroke();
 
-    context.moveTo(150, 300);
-    context.lineTo(200, 300);
+    context.moveTo(150, 300 * (that.data.height / 603));
+    context.lineTo(200, 300 * (that.data.height / 603));
     context.setStrokeStyle('white');
     context.stroke();
 
     context.setFontSize(30);
     context.setFillStyle('white');
     context.setTextAlign('center');
-    context.fillText("环形使者", 185, 350, 100);
+    context.fillText("环形使者", 185, 350 * (that.data.height / 603), 100);
     context.stroke();
 
     var timestamp = Date.parse(new Date());
@@ -224,38 +234,39 @@ Page({
     context.setFontSize(40);
     context.setFillStyle('#fff');
     context.setTextAlign('left');
-    context.fillText(timearr[2], 160, 100);
+    context.fillText(timearr[2], 160, 100 * (that.data.height / 603));
     context.stroke();
 
     context.setFontSize(20);
     context.setFillStyle('#fff');
     context.setTextAlign('left');
-    context.fillText(timearr[1], 165, 130);
+    context.fillText(timearr[1], 165, 130 * (that.data.height / 603));
     context.stroke();
 
     context.setFontSize(20);
     context.setFillStyle('#fff');
     context.setTextAlign('left');
-    context.fillText(timearr[0], 160, 150);
+    context.fillText(timearr[0], 160, 150 * (that.data.height / 603));
     context.stroke();
 
     context.setStrokeStyle('white');
-    context.strokeRect(146, 60, 69, 101);
+    context.strokeRect(146, 60 * (that.data.height / 603), 69, 110);
     //绘制左下角文字背景图
     // context.drawImage(path4, 25, 520, 184, 82);
     context.setFontSize(20);
     context.setFillStyle('#333');
     context.setTextAlign('left');
-    context.fillText(that.data.list.title.substr(0, 10), 35, 600);
+    context.fillText(that.data.list.title.substr(0, 10), 35, 600 * (that.data.height / 603));
     context.stroke();
 
     context.setFontSize(18);
     context.setFillStyle('#333');
     context.setTextAlign('left');
-    context.fillText("第" + that.data.haibaoinfo.guan_num + "/" + that.data.haibaoinfo.total_guan_num + "课打卡", 35, 630);
+    context.fillText("第" + that.data.haibaoinfo.guan_num + "/" + that.data.haibaoinfo.total_guan_num + "课打卡", 35, 630 * (that.data.height / 603));
     context.stroke();
 
-    context.drawImage("../../images/xiao_icon.jpg", 260, 530, 100, 100); // 在刚刚裁剪的园上画图
+    context.drawImage("../../images/xiao_icon.jpg", 260, 530 * (that.data.height / 603), 100 , 100 ); 
+    // 在刚刚裁剪的园上画图
     context.draw();
     
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -286,6 +297,8 @@ Page({
   //提交日记
   formSubmit (e) {
     var that = this;
+    
+
     wx.showLoading({
       title: '提交中...',
     })
@@ -302,6 +315,7 @@ Page({
           wx.hideLoading();
           console.log("触发生成海报");
           that.shengchenghaibao()
+          that.setData({ textareaishow: false})
         }
     })
   },
@@ -331,7 +345,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    var that = this
+    //获取屏幕宽度，获取自适应单位
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({ height: res.windowHeight,width: res.windowWidth})
+        
+      },
+    })
   },
 
   /**

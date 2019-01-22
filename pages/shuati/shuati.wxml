@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="maintitle">
+  <view style="display:none;" class="maintitle">
        <image src="../../images/select@2x.png" mode='aspectFill'/>
        <text>行测</text>
   </view>

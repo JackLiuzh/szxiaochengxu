@@ -15,7 +15,7 @@
          <view class="input-body">
              <form bindsubmit="formSubmit" >
                  <view class="text-area">
-                     <textarea name="rijitext" placeholder="说说今天的感想和收获吧..."  style="20rpx;" />
+                     <textarea wx:if="{{ textareaishow }}" name="rijitext" placeholder="说说今天的感想和收获吧..."  style="20rpx;" />
                  </view>
                  <view class="uploader__input-box">
                       <view class="uploader__files">
@@ -44,7 +44,7 @@
     <view bindtap="closeaction" class="closebutton" hidden="{{maskHidden == false}}">x</view>
     <view hidden="{{maskHidden == false}}" class="mask"></view> 
     <view class="canvas-box">
-        <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
+        <canvas  style='width:{{ width }}px;height: {{height + 64}}px;position:fixed;top:9999px' canvas-id="mycanvas"/>
     </view>
 
 
